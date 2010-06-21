@@ -147,59 +147,47 @@ With Some Other Crap}
 
 \makefrontmatter{front/frontmtr.tex}
 
+%%%% TABLES AND LIST
 
-%% Front pages of thesis.
-%\input{frontpage}
-\begin{precontent}
-\dedication{To Mum and Dad}
-\abstract{Did some stuff.}
-\acknowledgements{Some more stuff}
-\declaration{I did it.}
-\end{precontent}
-
-\pagestyle{main}
-%% Development table of contents
-% \newpage
-% \pagenumbering{roman}
-% \setcounter{page}{1}
+%% Table of contents
 \tableofcontents
-\clearpage
+
+%% List of figure
 \listoffigures
-\clearpage
 
-%% Main text.
-\newpage
-\pagenumbering{arabic}
-\setcounter{page}{1}
+%% List of tables
+\listoftables
 
-\include{chapter1}
-%\include{chapter2}
-%\include{chapter3}
-%\include{chapter4}
-%\include{chapter5}
-%\include{chapter6}
-%\include{chapter7}
+%% List of figures and tables
+% \listoffiguresandtables
 
-%% Appendices
-\appendix
-\noappendicestocpagenum
-\addappheadtotoc
-\renewcommand{\chaptername}{Appendix}
-\renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}
-%\pagestyle{appendstyle}
+%%%% START MAIN BODY TEXT
 
-%\input{appendix8}
-%\input{appendix2}
-%\input{appendix3}
-%\input{appendix4}
-%\input{appendix5}
-%\input{appendix6}
-%\input{appendix7}
-\input{appendix1}
+%% Call the edengths wrapper.
+\startbody
 
+\include{chapter1/chapter1}
+%\include{chapter2/chapter2}
+%\include{chapter3/chapter3}
+%\include{chapter4/chapter4}
+%\include{chapter5/chapter5}
+%\include{chapter6/chapter6}
 
-%% Write out bibliography
-\bibliography{mainrefs}{}
-\bibliographystyle{edengnat}
+%%%% START APPENDICIES
+
+%% Call the edengths wrapper.
+\startappendix
+
+\input{appendix/appendx1}
+
+%%%% WRITE OUT BIBLIOGRAPHY
+
+%% Path to bib file.
+\bibliography{bib/mainrefs}{}
+
+%% Path to style file. It's recommand you use the provided style file
+%% (a variation on plainnat) as it does italic et als and reduces
+%% all first names to initials.
+\bibliographystyle{bib/edengnat}
 
 \end{document}

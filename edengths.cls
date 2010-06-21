@@ -520,10 +520,37 @@
      \vspace*{10pt}%
     {\@starttoc{lot}}%
     \if@restonecol\twocolumn\fi%
+    \clearpage%
     }
 
 %% Make at safe again.
 \makeatother
+
+%% SHORTCUT WRAPPERS
+
+%% Wrapper to produce the front matter in one go.
+\newcommand{\makefrontmatter}[1][front/frontmtr.tex]{%
+    \pagenumbering{roman}%
+    \setcounter{page}{1}%
+    \maketitle%
+    \begin{precontent}%
+       \input{#1}%
+    \end{precontent}%
+    \pagestyle{main}}
+
+%% Wrapper to call commands to start the main body text.
+\newcommand{\startbody}{%
+    \newpage%
+    \pagenumbering{arabic}%
+    \setcounter{page}{1}}
+
+%% Wrapper to call commands to start the appendicies.
+\newcommand{\startappendix}{%
+    \appendix%
+    \noappendicestocpagenum%
+    \addappheadtotoc%
+    \renewcommand{\chaptername}{Appendix}%
+    \renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}}
 
 %%%% OTHER STUFF
 
