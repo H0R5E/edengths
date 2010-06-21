@@ -339,7 +339,6 @@
    \setcounter{secnumdepth}{-1}%
    \renewcommand{\chaptermark}[1]{}%
    \pagestyle{plain}%
-   \newpage%
    \pagenumbering{roman}%
    \setcounter{page}{1}%
    \titlespacing*{\chapter}{0pt}{0pt}{30pt}%
@@ -456,7 +455,6 @@
     \begin{center}%
        {\Large \@date}%
     \end{center}%
-    \clearpage%
 }
 
 %% Make at safe again.
@@ -465,12 +463,12 @@
 %% DEDICATION
 
 \newcommand{\dedication}[1]{%
-  \newpage%
+  \newpage
   \begin{center}%
     \vspace*{2cm}%
     \textit{\Large {#1}}%
   \end{center}%
-  \clearpage}
+}
 
 %% ABSTRACT
 
@@ -532,6 +530,7 @@
 \newcommand{\makefrontmatter}[1]{%
     \pagenumbering{roman}%
     \setcounter{page}{1}%
+    \clearpage
     \maketitle%
     \begin{precontent}%
        \input{#1}%
@@ -540,7 +539,7 @@
 
 %% Wrapper to call commands to start the main body text.
 \newcommand{\startbody}{%
-    \newpage%
+    \cleardoublepage%
     \pagenumbering{arabic}%
     \setcounter{page}{1}}
 
