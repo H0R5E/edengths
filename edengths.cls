@@ -65,6 +65,8 @@
 %%                                 titlesec to design the headers
 %%                                 Modified the titlepage and added an
 %%                                 option to include a crest.
+%%   21/06/10			   Had to fix interaction between reset
+%%				   of parskip and the non-starred title.
 %%
 %%
 
@@ -107,6 +109,9 @@
 
 \newboolean{pdfflag}                   % Provides correct package options for
 \setboolean{pdfflag}{false}            % pdf latex
+
+\newboolean{labelflag}                 % Print labels on the page
+\setboolean{labelflag}{false}
 
 
 %% DECLARE OPTIONS
@@ -163,7 +168,7 @@
 \DeclareOption{pdf}{\setboolean{pdfflag}{true}}
 
 %% Print equation labels next to equation numbers.
-\DeclareOption{labels}{\Requirepackage[inner]{showlabels}}
+\DeclareOption{labels}{\setboolean{labelflag}{true}}
 
 %% OTHER OPTIONS
 
@@ -214,14 +219,16 @@
 \RequirePackage[T1]{fontenc}                    % T1 encoding stops some errors
                                                 % for unknown fonts
 
-%% Provide the option to not use the sans serif fonts
+%% Provide the font options to packages for the sans serif fonts
+%% This loads titlesec, caption and subfig
 \ifthenelse{\boolean{sansflag}}{%
-  \RequirePackage[nobottomtitles*,pagestyles,bf,sf]{titlesec}%
-  \RequirePackage[labelfont={sf,bf}, textfont=sf]{caption,subfig}
+   \RequirePackage[nobottomtitles*,pagestyles,clearempty,bf,sf]{titlesec}%
+   \RequirePackage[labelfont={sf,bf}, textfont=sf]{caption, subfig}%
   }{%
-  \RequirePackage[nobottomtitles*,pagestyles]{titlesec}%
-  \RequirePackage{caption,subfig}%
-   }
+   \RequirePackage[nobottomtitles*,pagestyles,clearempty]{titlesec}%
+   \RequirePackage[labelfont=bf]{caption, subfig}%
+  }
+
 
 \RequirePackage[titles,subfigure]{tocloft}    % Allow modifications to the
                                               % table of contents and lists
@@ -231,11 +238,15 @@
 
 %% Use MS fonts if the option is given
 \ifthenelse{\boolean{msfontsflag}}{%
-\RequirePackage{times}%
-\RequirePackage{helvet}%
+  \RequirePackage{times}%
+  \RequirePackage{helvet}%
 }{%
 }
 
+%% Print labels on the page if option is given
+\ifthenelse{\boolean{labelflag}}{%
+   \RequirePackage[inner]{showlabels}%
+}{}
 
 %%%% MORE PACKAGES CAN BE DEFINED IN packages.tex
 
@@ -320,7 +331,8 @@
     \vspace{1pt}%
     \titlerule}%
     {\vspace{-2ex}}%
-    {0.1ex}%
+    % Fix the titles when the parskip is increased.
+    {-1.5\parskip}%
     {\bfseries\Huge}%
     [\vspace{1ex}%
     \titlerule]
@@ -339,8 +351,6 @@
    \setcounter{secnumdepth}{-1}%
    \renewcommand{\chaptermark}[1]{}%
    \pagestyle{plain}%
-   \pagenumbering{roman}%
-   \setcounter{page}{1}%
    \titlespacing*{\chapter}{0pt}{0pt}{30pt}%
    \ifthenelse{\boolean{fancychapflag}}{%
       %% 'numberless' definition above is sufficient.
@@ -454,7 +464,7 @@
     %% Date
     \begin{center}%
        {\Large \@date}%
-    \end{center}%
+    \end{center}
 }
 
 %% Make at safe again.
@@ -462,9 +472,9 @@
 
 %% DEDICATION
 
-\newcommand{\dedication}[1]{%
-  \newpage
-  \begin{center}%
+\newcommand{\dedication}[1]{%%
+   \thispagestyle{empty}
+   \begin{center}%
     \vspace*{2cm}%
     \textit{\Large {#1}}%
   \end{center}%
@@ -489,6 +499,7 @@
 \newcommand{\declaration}[1]{%
   \chapter{Declaration}%
   #1
+  \cleardoublepage
 }
 
 %% DEFINITION OF A COMBINED FIGURE AND TABLE LIST
@@ -517,8 +528,7 @@
     {\bfseries\defaultfont\Large Tables\par}%
      \vspace*{10pt}%
     {\@starttoc{lot}}%
-    \if@restonecol\twocolumn\fi%
-    \clearpage%
+    \if@restonecol\twocolumn\fi%%
     }
 
 %% Make at safe again.
@@ -530,16 +540,16 @@
 \newcommand{\makefrontmatter}[1]{%
     \pagenumbering{roman}%
     \setcounter{page}{1}%
-    \clearpage
     \maketitle%
+    \cleardoublepage
     \begin{precontent}%
        \input{#1}%
-    \end{precontent}%
+    \end{precontent}
     \pagestyle{main}}
 
 %% Wrapper to call commands to start the main body text.
 \newcommand{\startbody}{%
-    \cleardoublepage%
+    \cleardoublepage
     \pagenumbering{arabic}%
     \setcounter{page}{1}}
 
