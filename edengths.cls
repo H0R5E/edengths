@@ -236,12 +236,9 @@
 }{%
 }
 
-%% Extra packages are maintained in packages.tex
 
-\usepackage{booktabs}
-\usepackage[version=3]{mhchem}
+%%%% MORE PACKAGES CAN BE DEFINED IN packages.tex
 
-\usepackage[english]{babel}
 
 %% DEFINITIONS.
 
@@ -317,7 +314,7 @@
     {\bfseries\Huge}%
     [\vspace{1ex}%
     \titlerule]%
-  \titleformat{name=\chapter,numberless}[display]%
+    \titleformat{name=\chapter,numberless}[display]%
     {\huge\normalfont\defaultfont\filcenter%
     \titlerule[1pt]%
     \vspace{1pt}%
@@ -326,7 +323,9 @@
     {0.1ex}%
     {\bfseries\Huge}%
     [\vspace{1ex}%
-    \titlerule]}%
+    \titlerule]
+    \titlespacing*{name=\chapter,numberless}{0pt}{0pt}{30pt}%
+    }%
   {%% Otherwise do nothing.
   }
 
@@ -343,7 +342,7 @@
    \newpage%
    \pagenumbering{roman}%
    \setcounter{page}{1}%
-   \titlespacing*{\chapter}{0pt}{0pt}{20pt}%
+   \titlespacing*{\chapter}{0pt}{0pt}{30pt}%
    \ifthenelse{\boolean{fancychapflag}}{%
       %% 'numberless' definition above is sufficient.
     }{%
@@ -388,21 +387,22 @@
 %% Define a command for the path the to list. Default is to
 %% stylefiles/EdUniCrest.pdf. Default will go to eps or to
 %% pdf dependant on pdf option.
-\newcommand{\crestdefault}{\ifthenelse{\boolean{pdfflag}}%
-                            {frontmatter/EdUniCrest.pdf}%
-                            {frontmatter/EdUniCrest.eps}}
+\ifthenelse{\boolean{pdfflag}}%
+          {\newcommand{\crestdefault}{front/EdUniCrest.pdf}}%
+          {\newcommand{\crestdefault}{front/EdUniCrest.eps}}
 
-\newcommand{\crestfile}[1][\crestdefault]{#1}
+\newcommand{\crestfile}[1]{%
+    \renewcommand{\crestdefault{#1}}}
 
 %% If crestflag is true, check the path of the crest and set
 %% crestflag to false if the path is wrong
 \ifthenelse{\boolean{crestflag}}{%
-  \IfFileExists{\crestfile}{\typeout{Crest image file found.}}%
-                           {\setboolean{crestflag}{false}%
-                            \ClassWarning{edengths}{Crest image file not%
-                                                    found.}}%
-           }{% Do nothing if crestflag is false
-           }
+  \IfFileExists{\crestdefault}
+       {\typeout{Crest image file found.}}%
+       {\setboolean{crestflag}{false}%
+           \ClassWarning{edengths}{Crest image file not found.}}%
+  }{% Do nothing if crestflag is false
+  }
 
 %% Allow internal use of @ symbol
 \makeatletter
@@ -436,9 +436,9 @@
     %%
     %% University crest. Check crestflag.
     \ifthenelse{\boolean{crestflag}}{%
-      \vspace{2.5cm}%
+      \vspace{0.5cm}%
       \begin{center}%
-        \includegraphics[width=2in]{\crestfile}%
+        \includegraphics[width=2in]{\crestdefault}%
       \end{center}%
       }{% Do nothing if crestflag is false
       }%
@@ -529,7 +529,7 @@
 %% SHORTCUT WRAPPERS
 
 %% Wrapper to produce the front matter in one go.
-\newcommand{\makefrontmatter}[1][front/frontmtr.tex]{%
+\newcommand{\makefrontmatter}[1]{%
     \pagenumbering{roman}%
     \setcounter{page}{1}%
     \maketitle%
