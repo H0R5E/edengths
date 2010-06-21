@@ -63,7 +63,7 @@
 
 %%%% LOAD DOCUMENT CLASS
 
-\documentclass[fancychap]{edengths}
+\documentclass[fancychap,crest]{edengths}
 
 %% Default report class options are:
 %%
@@ -95,19 +95,21 @@
 %% pdf       - Use pdflatex
 %% labels    - Print labels in spine margin.
 
-%% Additional formatting can be done in edengfmt.tex where the page
-%% dimensions, header/footers and other bits can be altered.
+%% ADDITIONAL FORMATTING can be done in 'edengfmt.tex' where the page
+%% dimensions, header/footers, table of contents and the names of 
+%% the bibliography and list etc can be altered.
+%% IN PARTICULAR THE LINE SPACING IS SET IN 'edengfmt.tex'
 
 %% !!! NOTE: THE DEFAULT IS FOR LATEX NOT PDFLATEX !!!
 %% !!!       USE 'pdf' OPTION FOR PDFLATEX         !!!
 
 %%%% LOAD USER DEFINED PACKAGES.
 
-% \input{packages}
+\input{packages}
 
 %%%% LOAD USER DEFINED COMMANDS.
 
-% \input{defintns}
+\input{defintns}
 
 %%%% SET THE PATH FOR DIAGRAMS.
 
@@ -183,7 +185,7 @@ With Some Other Crap}
 %%%% WRITE OUT BIBLIOGRAPHY
 
 %% Path to bib file.
-\bibliography{bib/mainrefs}{}
+\bibliography{bib/edengref}{}
 
 %% Path to style file. It's recommand you use the provided style file
 %% (a variation on plainnat) as it does italic et als and reduces
