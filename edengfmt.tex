@@ -64,6 +64,8 @@
 %%				   the size of the header separation.
 %%   21/06/10                      Controlling headers using titlesec rather
 %%                                 than fancyhdr to avoid confusion.
+%%				   Added \raggedbottom to stop the bad boxes
+%%				   when the twoside option is set.
 %%
 %%
 
@@ -150,5 +152,9 @@
   \setfoot[][\thepage][]{}{\thepage}{}
 }
 
+%% FIX VBOX ERROR WITH 'twoside' OPTION
+
+%% Makes all pages the height of the text on that page
+\raggedbottom
 
 
