@@ -141,11 +141,11 @@
 
 %% LOCAL OPTIONS
 
-%% Don't use the sans serif headers and captions
-\DeclareOption{nosans}{\setboolean{sansflag}{false}}
-
 %% Enable numbering of subsubsections (note: these don't appear in the contents)
 \DeclareOption{subsubnos}{\addtocounter{secnumdepth}{1}}
+
+%% Don't use the sans serif headers and captions
+\DeclareOption{nosans}{\setboolean{sansflag}{false}}
 
 %% Remove paragraph indent and add a line skip
 \DeclareOption{nopardent}{\setboolean{pardentflag}{false}}
@@ -161,6 +161,9 @@
 
 %% Using pdflatex
 \DeclareOption{pdf}{\setboolean{pdfflag}{true}}
+
+%% Print equation labels next to equation numbers.
+\DeclareOption{labels}{\Requirepackage[inner]{showlabels}}
 
 %% OTHER OPTIONS
 
