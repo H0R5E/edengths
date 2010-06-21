@@ -1,0 +1,149 @@
+%%
+%% edengfmt.tex - User defined formatting for thesis class
+%%
+%% Copyright (C) 2010 Mathew Topper <damm_horse@yahoo.co.uk>
+%%
+%% This file is part of the University of Edinburgh, Department of
+%% Engineering LaTeX2e thesis template.
+%% 
+%% The University of Edinburgh, Department of Engineering LaTeX2e thesis
+%% template is free software: you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
+%% 
+%% The University of Edinburgh, Department of Engineering LaTeX2e thesis
+%% template is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%% 
+%% You should have received a copy of the GNU General Public License
+%% along with the University of Edinburgh, Department of Engineering
+%% LaTeX2e thesis template.  If not, see <http://www.gnu.org/licenses/>.
+%%
+%%
+%%   ABOUT
+%%
+%% This is the user defined formatting file for a Latex2e template which
+%% corresponds to the regulations regarding layout of a thesis submitted within
+%% the University of Edinburgh school of Engineering. It is not `official', but
+%% conforms as best as possible to the regulation as detailed at:
+%%
+%%   http://www.scieng.ed.ac.uk/Postgraduate/PhD/settingoutyourthesis.htm
+%%
+%% Please feel free to alter the template to your own liking, but note that
+%% the template is made available under the GNU GPL and must be similarly
+%% licenced should you wish to release your modified template.
+%%
+%%   NOTE : THIS FILE MUST BE IN THE SAME DIRECTORY AS edengths.cls
+%%
+%%
+%%   CREDITS
+%%
+%% This template is an amalgamtion of an existing Edinburgh University,
+%% Electrical Engineering PhD Thesis class file (jthesis-v1.cls) authored by
+%% George S Taylor which was released under the GNU GPL.
+%% Code is included from the dmathesis class Written by M. Imran
+%% for a thesis according to the university of Durham regulation, which was
+%% released without copyright. It also contains ideas (possibly code) from the
+%% Princeton thesis class file (PrincetonThesis.cls), authored by Mike Nolta.
+%% Mathew Topper, Eoghan Maguire and Bill Edwards forsaw the need to maintain a
+%% more recent latex implementation of the thesis regulations and thus, this
+%% project was born. It is hoped that the template will be maintained by the
+%% Edinburgh Engineering PhD community once released.
+%%
+%%
+%%   RECORD OF REVISIONS
+%%
+%%     Date      Programmer        Description of change
+%%     ====      ==========        =====================
+%%   18/06/10    Mathew Topper     Made copy of format.tex and renamed.
+%%   19/06/10			   Added defaultfont to control the header
+%%                                 font using class options. Also reduce
+%%				   the size of the header separation.
+%%   21/06/10                      Controlling headers using titlesec rather
+%%                                 than fancyhdr to avoid confusion.
+%%
+%%
+
+%%%% SET THE MARGINS
+
+%% Note, the margins here are University of Edinburgh, School of Engineering
+%% regulation. You may wish to borrow a millimetre here or there and change
+%% the header, for example, and thus the setting of the margins has been made
+%% available here. It's not recommended you change these too much!
+%% Note: Margins are controlled by the 'geometry' package.
+\geometry{top=20mm, inner=40mm, outer=25mm, bottom=40mm}
+
+%% Control the header height and separation for fancyhdr
+\geometry{headheight=15.2pt, headsep=4mm}
+
+%% Set the space between the main text and the start of the footnone
+\geometry{footnotesep=5mm}
+
+
+%%%% SET THE LINE SPACING.
+
+%% Controlled by `setspace' package.
+%% Note: you can defined environments for different spacings during the 
+%% document. Quotes are automatically single spaced via this method.
+%% ie \begin{singlespace}blah blah\end{singlespace}
+
+%% Pick one of these three options for global spacing.
+
+\onehalfspacing                        % One and a half spaced
+
+%\doublespacing                        % Double spacing
+
+%\setstretch{1.45}                     % Custom spacing. 1.3 ~ onehalf &
+                                       % 1.6 ~ double spaced
+
+%%%% FANCY HEADERS
+
+%% You can mess around with these if you like, but I wouldn't bother, really.
+
+%% Headers for the main body of the text, ie from contents onwards.
+%% If there is no chapter number then uppercase lettering is used.
+\newpagestyle{main}[\defaultfont\bfseries]{%
+  \headrule
+\sethead%
+[\ifthesection{\thesection}{\ifthechapter{\thechapter}{}} \space
+\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{
+\MakeUppercase{\chaptertitle}}}][][
+\thepage]
+{\ifthesection{\thesection}{\ifthechapter{\thechapter}{}} \space
+\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{
+\MakeUppercase{\chaptertitle}}}}{}{\thepage}
+  \setfoot[][][]{}{}{}
+}
+
+%% Redefine the plain page style to use the defaultfont for the
+%% numbering.
+\renewpagestyle{plain}[\defaultfont]{%
+\sethead[][][]{}{}{}
+  \setfoot[][\thepage][]{}{\thepage}{}
+}
+
+
+%%%% TABLE OF CONTENTS AND LISTS
+
+%% These commands are part of the `tocloft' package.
+
+%% Remove the indent on the list of figures and tables.
+\setlength{\cftfigindent}{0pt}
+
+
+%% Custom skip before chapters in the TOC. This is useful is, say, the
+%% appendicies entry is alone at the foot of the page.
+
+% \setlength{\cftbeforechapskip}{14pt}
+
+
+%% If you don't like capitalised titles in the forematter you can changed these
+%% here.
+
+% \renewcommand{\listfigurename}{List of figures}
+% \renewcommand{\listtablename}{List of tables}
+
+
