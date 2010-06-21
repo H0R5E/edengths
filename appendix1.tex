@@ -1,0 +1,46 @@
+\chapter{Collocation Method at the Wake Edges}
+\label{append:collocation}
+
+\setcounter{equation}{0}
+
+A collocation based gradient method is formulated in \citet[sec. 5]{Gray:2004:SJoSC}. In that
+paper it is proved that the method, although applicable to a general Laplace problem, is not
+applicable to the crack problem. The difficulty arises from an additional constant in the shape
+functions for the most singular point. However, the zero value of 
+
+% To finalise the applicability of this method, prior to its derivation, and in respect to the
+% necessity of an internal and external domain, it is proposed that the method does not suffer the
+% same difficulties at an edge as the Galerkin method.
+% 
+% To prove this consider a general point of interest lying on either the top and bottom
+% surfaces of the wake, $S^{+}$ and $S^{-}$. Once more, the average of the velocities of the top and
+% bottom are saught. This is written as
+% \begin{multline}
+% \frac{1}{2} \left( \pdif{\phi^{+}}{E_{k}} + \pdif{\phi^{-}}{E_{k}} \right) = \left\{ \lim_{\pint
+% \rightarrow P} - \lim_{\pext \rightarrow P}
+% \right\} \int_{S} \phi \frac{\partial^{2}G}{\partial\E_{k}\partial\n} \: dS \\
+% = \left\{ \lim_{\pint \rightarrow P} - \lim_{\pext \rightarrow P}
+% \right\} \int_{S^{+}} \phi^{+} \frac{\partial^{2}G}{\partial\E_{k}\partial\n^{+}}
+% \: dS + \int_{S^{-}} \phi^{-} \frac{\partial^{2}G}{\partial\E_{k}\partial\n^{-}}
+% \: dS
+% \end{multline}
+% Moving on to considering a point lying on the division between $S^{+}$ and $S^{-}$, the above
+% becomes
+% \begin{equation}\label{eq:edge_collocation}
+% \pdif{\phi}{E_{k}} = \left\{ \lim_{\pint \rightarrow P} - \lim_{\pext \rightarrow P}
+% \right\}
+% \int_{S^{+}} \phi^{+} \frac{\partial^{2}G}{\partial\E_{k}\partial\n^{+}} \: dS +
+% \int_{S^{-}} \phi^{-} \frac{\partial^{2}G}{\partial\E_{k}\partial\n^{-}} \: dS
+% \end{equation}
+% given that $\phi^{+} + \phi^{-} = \phi$. The difference between the internal and external limits
+% will cancel all of the non-singular integrals, hence the remaining integrals are just the singular
+% ones in $S^{+}$ and $S^{-}$. The right hand side of equation~\eqref{eq:edge_collocation} can
+% easily be combined into a single surface by
+
+The development of the collocation method is very similar to that of the edge adjacent integral,
+expect that only one polar transformation is available. To begid
+effect of
+differ
+
+
+% END OF CHAPTER
