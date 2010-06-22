@@ -71,6 +71,10 @@
 %%                                  ifpdf package.
 %%                                  Added 'ae' package to improve ouput
 %%                                  quality.
+%%                                  Fixed lenghts of TOC, LOF, LOT and
+%%                                  section whitespace after the nopardent
+%%                                  option is set. Had to counter the effect
+%%                                  of the increased parskip.
 %%
 %%
 
