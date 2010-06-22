@@ -56,17 +56,19 @@
 %%
 %%   RECORD OF REVISIONS
 %%
-%%     Date      Programmer        Description of change
-%%     ====      ==========        =====================
-%%   14/06/10    Mathew Topper     Wrote preamble.
-%%                                 Declared use of report class options.
-%%   20/06/10                      Set an option to use fancy chapter
-%%                                 headings like jthesis-v1 except using
-%%                                 titlesec to design the headers
-%%                                 Modified the titlepage and added an
-%%                                 option to include a crest.
-%%   21/06/10			   Had to fix interaction between reset
-%%				   of parskip and the non-starred title.
+%%     Date      Programmer         Description of change
+%%     ====      ==========         =====================
+%%   14/06/10    Mathew Topper      Wrote preamble.
+%%                                  Declared use of report class options.
+%%   20/06/10                       Set an option to use fancy chapter
+%%                                  headings like jthesis-v1 except using
+%%                                  titlesec to design the headers
+%%                                  Modified the titlepage and added an
+%%                                  option to include a crest.
+%%   21/06/10			    Had to fix interaction between reset
+%%				    of parskip and the non-starred title.
+%%   22/06/10                       Removed pdf option in favour of
+%%                                  ifpdf package.
 %%
 %%
 
@@ -78,6 +80,9 @@
 
 %% `ifthen' provides simple boolean commands
 \RequirePackage{ifthen}
+
+%% 'ifpdf' detects whether pdflatex is being used.
+\RequirePackage{ifpdf}
 
 %% DECLARE VARIABLES AND COMMANDS FOR CLASS
 
@@ -106,9 +111,6 @@
 
 \newboolean{crestflag}                 % Put a crest on the frontpage
 \setboolean{crestflag}{false}
-
-\newboolean{pdfflag}                   % Provides correct package options for
-\setboolean{pdfflag}{false}            % pdf latex
 
 \newboolean{labelflag}                 % Print labels on the page
 \setboolean{labelflag}{false}
@@ -164,9 +166,6 @@
 %% Use a crest on the front page
 \DeclareOption{crest}{\setboolean{crestflag}{true}}
 
-%% Using pdflatex
-\DeclareOption{pdf}{\setboolean{pdfflag}{true}}
-
 %% Print equation labels next to equation numbers.
 \DeclareOption{labels}{\setboolean{labelflag}{true}}
 
@@ -200,9 +199,6 @@
                                                 % automatically.
 \RequirePackage{setspace}                       % Define line spacing
 
-%% Headers are now dealt with using titlesec
-%\RequirePackage{fancyhdr}                       % Use fancy page headers
-
 %% Appendix
 \RequirePackage{appendix}                       % Required for appendices
 
@@ -210,17 +206,14 @@
 \RequirePackage{natbib}                         % Natbib with default options
 \RequirePackage{url}                            % Typeset URLs properly
 
-%% AMS Math Packages
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{amsthm}
-
 %% FONTS
 \RequirePackage[T1]{fontenc}                    % T1 encoding stops some errors
                                                 % for unknown fonts
 
 %% Provide the font options to packages for the sans serif fonts
-%% This loads titlesec, caption and subfig
+%% This loads titlesec, caption and subfig. titlesec does headers
+%% and title formating. caption does caption formatting and
+%% subfig allows subfigures.
 \ifthenelse{\boolean{sansflag}}{%
    \RequirePackage[nobottomtitles*,pagestyles,clearempty,bf,sf]{titlesec}%
    \RequirePackage[labelfont={sf,bf}, textfont=sf]{caption, subfig}%
@@ -396,7 +389,7 @@
 %% Define a command for the path the to list. Default is to
 %% stylefiles/EdUniCrest.pdf. Default will go to eps or to
 %% pdf dependant on pdf option.
-\ifthenelse{\boolean{pdfflag}}%
+\ifthenelse{\boolean{pdf}}%
           {\newcommand{\crestdefault}{front/EdUniCrest.pdf}}%
           {\newcommand{\crestdefault}{front/EdUniCrest.eps}}
 

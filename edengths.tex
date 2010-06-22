@@ -55,15 +55,17 @@
 %%
 %%   RECORD OF REVISIONS
 %%
-%%     Date      Programmer        Description of change
-%%     ====      ==========        =====================
-%%   21/06/10    Mathew Topper     First Try.
+%%     Date      Programmer         Description of change
+%%     ====      ==========         =====================
+%%   21/06/10    Mathew Topper      First Try.
+%%   22/06/10                       Removed pdf option in favour of
+%%                                  ifpdf package.
 %%
 %%
 
 %%%% LOAD DOCUMENT CLASS
 
-\documentclass[11pt,crest,msfonts,fancychap,nopardent,pdf]{edengths}
+\documentclass[11pt,crest,msfonts,fancychap,nopardent]{edengths}
 
 %% Default report class options are:
 %%
@@ -92,7 +94,6 @@
 %% msfonts   - Use MS fonts rather than latex default
 %% fancychap - Use fancy chapter headings like jthesis
 %% crest     - Use a crest on the front page
-%% pdf       - Use pdflatex
 %% labels    - Print labels in spine margin.
 
 %% ADDITIONAL FORMATTING can be done in 'edengfmt.tex' where the page
@@ -100,8 +101,8 @@
 %% the bibliography and list etc can be altered.
 %% IN PARTICULAR THE LINE SPACING IS SET IN 'edengfmt.tex'
 
-%% !!! NOTE: THE DEFAULT IS FOR LATEX NOT PDFLATEX !!!
-%% !!!       USE 'pdf' OPTION FOR PDFLATEX         !!!
+%% The class file should automatically detect pdflatex and provide
+%% the right options.
 
 %%%% LOAD USER DEFINED PACKAGES.
 
