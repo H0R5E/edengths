@@ -8,7 +8,11 @@ paper~\cite{apaper}. Figure~\ref{fig:picture} is a weird picture.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=2in]{chapter2/examplepicture.pdf}
+  %% Because graphicspath was set in edengths.tex you only need to
+  %% supply the file name here, i.e. examplepicture (doesn't need the
+  %% extension) and not the full path. Just remember to add the path
+  %% to \graphicspath{{thispath/}{thatpath/}}
+  \includegraphics[width=2in]{examplepicture}
   \caption[Long caption and \textit{some italics} to see what happens]%
   {This is an example of pdf with a very long caption and \textit{some italics} to see what happens and it should see what happens over two lines.}
 \label{fig:picture}
