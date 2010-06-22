@@ -324,13 +324,11 @@
     \titlerule]%
     \titleformat{name=\chapter,numberless}[display]%
     {\huge\normalfont\defaultfont\filcenter%
-    \titlerule[1pt]%
-    \vspace{1pt}%
     \titlerule}%
     {\vspace{-2ex}}%
     % Fix the titles when the parskip is increased.
     {-1.75\parskip}%
-    {\bfseries\Huge}%
+    {\huge}%
     [\vspace{1ex}%
     \titlerule]
     \titlespacing*{name=\chapter,numberless}{0pt}{0pt}{30pt}%
