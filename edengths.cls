@@ -75,6 +75,8 @@
 %%                                  section whitespace after the nopardent
 %%                                  option is set. Had to counter the effect
 %%                                  of the increased parskip.
+%%                                  'times' package obsolete. Replaced with
+%%                                  'mathptmx'
 %%
 %%
 
@@ -239,7 +241,7 @@
 
 %% Use MS fonts if the option is given
 \ifthenelse{\boolean{msfontsflag}}{%
-  \RequirePackage{times}%
+  \RequirePackage{mathptmx}%
   \RequirePackage[scaled=.92]{helvet}%
 }{%
 }
