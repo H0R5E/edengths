@@ -299,7 +299,14 @@
     \setlength{\parskip}{2ex}%
     %% Because we've set \parskip to a >0 value we set \partopsep to 0
     %% so that it doesn't matter if you place a blank line before a list
-    \setlength{\partopsep}{0mm}}
+    \setlength{\partopsep}{0mm}
+    %% Repair problems in the TOC, LOF and LOT
+    \addtolength{\cftbeforechapskip}{-2ex}%
+    \addtolength{\cftbeforesecskip}{-2ex}%
+    \addtolength{\cftbeforesubsecskip}{-2ex}%
+    \addtolength{\cftbeforefigskip}{-2ex}%
+    \addtolength{\cftbeforetabskip}{-2ex}}
+
 
 %%%% FANCY CHAPTERS
 
@@ -331,10 +338,25 @@
     {\huge}%
     [\vspace{1ex}%
     \titlerule]
+    %% Control the spacing of the un-numbered chapters.
     \titlespacing*{name=\chapter,numberless}{0pt}{0pt}{30pt}%
     }%
-  {%% Otherwise do nothing.
+  {%% Do nothing in this case
   }
+
+% Protect the section spacing if parskip has increased
+\ifthenelse{\boolean{pardentflag}}%
+  {%
+    %% Do nothing if flag is true.
+  }{%
+    \titlespacing*{\chapter}      {0pt}{0pt}%
+                                          {20pt}%
+    \titlespacing*{\section}      {0pt}{3.5ex plus 1ex minus .2ex}%
+                                          {0.6ex plus .2ex}%
+    \titlespacing*{\subsection}   {0pt}{3.25ex plus 1ex minus .2ex}%
+                                          {0.1ex plus .1ex}%
+    \titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}%
+                                          {0.1ex plus .1ex}}
 
 %% Design some chapter headings for centred headings in the front matter like
 %% the dmathesis style thesis. These are applied to the front matter using
@@ -360,6 +382,7 @@
   {
    %% Restart numbering
    \setcounter{secnumdepth}{2}}
+
 
 
 %%%% SINGLE SPACING QUOTE ENVIRONMENTS
