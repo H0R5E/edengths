@@ -69,6 +69,8 @@
 %%				    of parskip and the non-starred title.
 %%   22/06/10                       Removed pdf option in favour of
 %%                                  ifpdf package.
+%%                                  Added 'ae' package to improve ouput
+%%                                  quality.
 %%
 %%
 
@@ -207,6 +209,8 @@
 \RequirePackage{url}                            % Typeset URLs properly
 
 %% FONTS
+\RequirePackage{ae}                             % Virtual fonts for T1 encoded
+                                                % CMR-fonts.
 \RequirePackage[T1]{fontenc}                    % T1 encoding stops some errors
                                                 % for unknown fonts
 
@@ -325,7 +329,7 @@
     \titlerule}%
     {\vspace{-2ex}}%
     % Fix the titles when the parskip is increased.
-    {-1.5\parskip}%
+    {-1.75\parskip}%
     {\bfseries\Huge}%
     [\vspace{1ex}%
     \titlerule]
