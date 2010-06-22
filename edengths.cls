@@ -239,7 +239,7 @@
 %% Use MS fonts if the option is given
 \ifthenelse{\boolean{msfontsflag}}{%
   \RequirePackage{times}%
-  \RequirePackage{helvet}%
+  \RequirePackage[scaled=.92]{helvet}%
 }{%
 }
 
