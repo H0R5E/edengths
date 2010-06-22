@@ -354,7 +354,7 @@
     %% Do nothing if flag is true.
   }{%
     \titlespacing*{\chapter}      {0pt}{0pt}%
-                                          {20pt}%
+                                          {30pt}%
     \titlespacing*{\section}      {0pt}{3.5ex plus 1ex minus .2ex}%
                                           {0.6ex plus .2ex}%
     \titlespacing*{\subsection}   {0pt}{3.25ex plus 1ex minus .2ex}%
