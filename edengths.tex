@@ -60,6 +60,10 @@
 %%   21/06/10    Mathew Topper      First Try.
 %%   22/06/10                       Removed pdf option in favour of
 %%                                  ifpdf package.
+%%   23/06/10                       Can now include appendix files
+%%                                  rather than input. Need to include
+%%                                  the file appendix/edengapp.tex
+%%                                  Added includeonly command.
 %%
 %%
 
@@ -137,6 +141,12 @@ With Some Other Crap}
 %% Year of submission
 \date{2010}
 
+%%%% CHAPTERS TO INCLUDE
+
+%% You may restrict which chapters are compiled using includeonly
+%% appendix/edengapp MUST ALWAYS BE IN THE LIST
+% \includeonly{appendix/edengapp, chapter1/chapter1, appendix/appendx1}
+
 %%%% START DOCUMENT
 
 \begin{document}
@@ -171,17 +181,22 @@ With Some Other Crap}
 
 \include{chapter1/chapter1}
 \include{chapter2/chapter2}
-%\include{chapter3/chapter3}
-%\include{chapter4/chapter4}
-%\include{chapter5/chapter5}
-%\include{chapter6/chapter6}
+% \include{chapter3/chapter3}
+% \include{chapter4/chapter4}
+% \include{chapter5/chapter5}
+% \include{chapter6/chapter6}
 
 %%%% START APPENDICIES
 
-%% Call the edengths wrapper.
-\startappendix
+%% Include the appendix commands. To include appendix files,
+%% These commands must be maintained in a separate file
+%% for proper operation and included in the includeonly command.
+\include{appendix/edengapp}
 
-\input{appendix/appendx1}
+%% Appendix files. Start each with \chapter
+\include{appendix/appendx1}
+% \include{appendix/appendx2}
+
 
 %%%% WRITE OUT BIBLIOGRAPHY
 

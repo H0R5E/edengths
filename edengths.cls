@@ -77,6 +77,11 @@
 %%                                  of the increased parskip.
 %%                                  'times' package obsolete. Replaced with
 %%                                  'mathptmx'
+%%  23/06/10                        Removed startappendix command as to 
+%%                                  get correct behaviour using include for
+%%                                  appendix files, the commands must also
+%%                                  be included in a file. The new file is
+%%                                  called appedix/edengapp.tex
 %%
 %%
 
@@ -577,13 +582,8 @@
     \pagenumbering{arabic}%
     \setcounter{page}{1}}
 
-%% Wrapper to call commands to start the appendicies.
-\newcommand{\startappendix}{%
-    \appendix%
-    \noappendicestocpagenum%
-    \addappheadtotoc%
-    \renewcommand{\chaptername}{Appendix}%
-    \renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}}
+%% Appendix work is now done in a separate file
+%% appendix/edengapp.tex
 
 %%%% OTHER STUFF
 
