@@ -143,7 +143,7 @@ With Some Other Crap}
 
 %%%% CHAPTERS TO INCLUDE
 
-%% You may restrict which chapters are compiled using includeonly
+%% You may restrict which chapters are compiled using \includeonly
 %% appendix/edengapp MUST ALWAYS BE IN THE LIST.
 % \includeonly{appendix/edengapp, chapter1/chapter1, appendix/appendx1}
 
@@ -188,9 +188,11 @@ With Some Other Crap}
 
 %%%% START APPENDICIES
 
-%% Include the appendix commands. To use for include appendix
-%% files, the commands are maintained in a separate file.
-%% The file must also be listed in the includeonly command.
+%% Execute the appendix commands. To allow use of include
+%% for appendix files, the commands are maintained in a
+%% separate file.
+%%
+%% This file must also be listed in the \includeonly command.
 \include{appendix/edengapp}
 
 %% Appendix files. Start each with \chapter
