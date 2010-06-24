@@ -160,10 +160,11 @@
 \newpagestyle{twomain}[\defaultfont\bfseries]{%
   \headrule%
   \sethead%
-    [\ifthechapter{\thechapter{.} \space}{}\ifthechapter{\chaptertitle}%
-     {\MakeUppercase{\chaptertitle}}]%
-    [][\thepage]%
-    {\ifthesection{\sectiontitle}{}}{}{\thepage}%
+    [\thepage]%
+    [][\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}]%
+    {\ifthesection{\thesection{.} \space}{\ifthechapter{\thechapter{.}%
+    \space}{}}\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{%
+    \MakeUppercase{\chaptertitle}}}}{}{\thepage}%
   \setfoot[][][]{}{}{}%
   }
 
