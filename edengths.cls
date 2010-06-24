@@ -60,28 +60,47 @@
 %%     ====      ==========         =====================
 %%   14/06/10    Mathew Topper      Wrote preamble.
 %%                                  Declared use of report class options.
+%%
 %%   20/06/10                       Set an option to use fancy chapter
 %%                                  headings like jthesis-v1 except using
 %%                                  titlesec to design the headers
+%%
 %%                                  Modified the titlepage and added an
 %%                                  option to include a crest.
+%%
 %%   21/06/10			    Had to fix interaction between reset
 %%				    of parskip and the non-starred title.
+%%
 %%   22/06/10                       Removed pdf option in favour of
 %%                                  ifpdf package.
+%%
 %%                                  Added 'ae' package to improve ouput
 %%                                  quality.
+%%
 %%                                  Fixed lenghts of TOC, LOF, LOT and
 %%                                  section whitespace after the nopardent
 %%                                  option is set. Had to counter the effect
 %%                                  of the increased parskip.
+%%
 %%                                  'times' package obsolete. Replaced with
 %%                                  'mathptmx'
-%%  23/06/10                        Removed startappendix command as to 
+%%
+%%   23/06/10                       Removed startappendix command as to 
 %%                                  get correct behaviour using include for
 %%                                  appendix files, the commands must also
 %%                                  be included in a file. The new file is
 %%                                  called appedix/edengapp.tex
+%%
+%%   24/06/10			    Took cleardoublepage out of the 
+%%				    declaration and put into the precontent
+%%				    environment wrapper.
+%%
+%%				    Added boolean twosideflag to check if
+%%				    twoside is set. If it is set then use
+%%				    pagestyle 'twomain' which can
+%%				    set different headers (for even
+%%				    pages) at the end of makefrontmatter
+%%				    wrapper instead of main.
 %%
 %%
 
@@ -128,6 +147,9 @@
 \newboolean{labelflag}                 % Print labels on the page
 \setboolean{labelflag}{false}
 
+\newboolean{twosideflag}	       % Is the twoside option set?
+\setboolean{twosideflag}{false}
+
 
 %% DECLARE OPTIONS
 
@@ -140,7 +162,10 @@
 \OnOption{fleqno}
 \OnOption{leqno}
 \OnOption{oneside}
-\OnOption{twoside}
+
+%% Set a boolean in addition for the twoside option
+\DeclareOption{twoside}{\setboolean{twosideflag}{true}%
+                        \PassOptionsToClass{twoside}{report}}
 
 %% Must have options.
 \OnOption{a4paper}	
@@ -392,7 +417,10 @@
    }}%
   {
    %% Restart numbering
-   \setcounter{secnumdepth}{2}}
+   \setcounter{secnumdepth}{2}%
+   %% Output the pages
+    \cleardoublepage%
+  }
 
 
 
@@ -528,7 +556,6 @@
 \newcommand{\declaration}[1]{%
   \chapter{Declaration}%
   #1
-  \cleardoublepage
 }
 
 %% DEFINITION OF A COMBINED FIGURE AND TABLE LIST
@@ -574,7 +601,11 @@
     \begin{precontent}%
        \input{#1}%
     \end{precontent}
-    \pagestyle{main}}
+    %% Use alternative style if twosideflag is true
+    \ifthenelse{\boolean{twosideflag}}%
+      {\pagestyle{twomain}}%
+      {\pagestyle{main}}%
+    }
 
 %% Wrapper to call commands to start the main body text.
 \newcommand{\startbody}{%
