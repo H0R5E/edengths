@@ -92,8 +92,8 @@
 %%                                  called appedix/edengapp.tex
 %%
 %%   24/06/10			    Took cleardoublepage out of the 
-%%				    declaration and put into the precontent
-%%				    environment wrapper.
+%%				    declaration and put into the makefrontmatter
+%%				    command.
 %%
 %%				    Added boolean twosideflag to check if
 %%				    twoside is set. If it is set then use
@@ -418,8 +418,6 @@
   {
    %% Restart numbering
    \setcounter{secnumdepth}{2}%
-   %% Output the pages
-    \cleardoublepage%
   }
 
 
@@ -597,10 +595,14 @@
     \pagenumbering{roman}%
     \setcounter{page}{1}%
     \maketitle%
+    %% Make sure dedication is on odd page.
     \cleardoublepage
     \begin{precontent}%
        \input{#1}%
     \end{precontent}
+    %% Make sure declaration has right page style
+    %% and page numbering is sane.
+    \cleardoublepage
     %% Use alternative style if twosideflag is true
     \ifthenelse{\boolean{twosideflag}}%
       {\pagestyle{twomain}}%
