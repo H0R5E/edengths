@@ -102,6 +102,11 @@
 %%				    pages) at the end of makefrontmatter
 %%				    wrapper instead of main.
 %%
+%%				    Use parskip package rather than manual
+%%				    set of parskip. This means that the
+%%				    TOC, LOF and LOT protection has been
+%%				    removed. Had to adjust titlepage def.
+%%
 %%
 
 %% BEGIN CLASS FILE
@@ -281,6 +286,15 @@
    \RequirePackage[inner]{showlabels}%
 }{}
 
+%% Load parskip package if paragraph indentation in not wanted
+\ifthenelse{\boolean{pardentflag}}%
+  {%
+    %% Do nothing if flag is true.
+  }{%
+    \RequirePackage{parskip}%
+  }
+
+
 %%%% MORE PACKAGES CAN BE DEFINED IN packages.tex
 
 
@@ -323,25 +337,6 @@
 
 %% Make a special command called defaultfont which sets sans or not.
 \newcommand{\defaultfont}{\ifthenelse{\boolean{sansflag}}{\sffamily}{}}
-
-%% PARAGRAPH INDENTATION
-
-\ifthenelse{\boolean{pardentflag}}%
-  {%
-    %% Do nothing if flag is true.
-  }{%
-    %% No indentation for paragraphs, and set gap between paragraphs
-    \setlength{\parindent}{0mm}%
-    \setlength{\parskip}{2ex}%
-    %% Because we've set \parskip to a >0 value we set \partopsep to 0
-    %% so that it doesn't matter if you place a blank line before a list
-    \setlength{\partopsep}{0mm}
-    %% Repair problems in the TOC, LOF and LOT
-    \addtolength{\cftbeforechapskip}{-2ex}%
-    \addtolength{\cftbeforesecskip}{-2ex}%
-    \addtolength{\cftbeforesubsecskip}{-2ex}%
-    \addtolength{\cftbeforefigskip}{-2ex}%
-    \addtolength{\cftbeforetabskip}{-2ex}}
 
 
 %%%% FANCY CHAPTERS
@@ -500,7 +495,7 @@
     %%
     %% University crest. Check crestflag.
     \ifthenelse{\boolean{crestflag}}{%
-      \vspace{0.5cm}%
+      \vspace{2cm}%
       \begin{center}%
         \includegraphics[width=2in]{\crestdefault}%
       \end{center}%
@@ -577,7 +572,7 @@
               }%
     {\bfseries\defaultfont\Large Figures\par}%
      \vspace*{10pt}%
-    {\parskip2.5\p@\@starttoc{lof}}%
+    {\@starttoc{lof}}%
      \mrule%
     {\bfseries\defaultfont\Large Tables\par}%
      \vspace*{10pt}%
