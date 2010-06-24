@@ -59,13 +59,20 @@
 %%     Date      Programmer        Description of change
 %%     ====      ==========        =====================
 %%   18/06/10    Mathew Topper     Made copy of format.tex and renamed.
+%%
 %%   19/06/10			   Added defaultfont to control the header
 %%                                 font using class options. Also reduce
 %%				   the size of the header separation.
+%%
 %%   21/06/10                      Controlling headers using titlesec rather
 %%                                 than fancyhdr to avoid confusion.
+%%
 %%				   Added \raggedbottom to stop the bad boxes
 %%				   when the twoside option is set.
+%%
+%%   24/06/10			   Added another pagestyle 'twomain' which can
+%%				   be used to set different headers (for even
+%%				   pages if twoside option is set.
 %%
 %%
 
@@ -128,30 +135,43 @@
 %% Rename bibliography should you desire
 % \renewcommand{\bibname}{References}
 
-%%%% FANCY HEADERS
+%%%% FANCY HEADERS (using titlesec)
 
 %% You can mess around with these if you like, but I wouldn't bother, really.
+%% DON'T CHANGE THE NAMES 'main' AND 'twomain'.
 
 %% Headers for the main body of the text, ie from contents onwards.
+%% These headers are used when the document is single sided.
 %% If there is no chapter number then uppercase lettering is used.
+%% Format is {left}{center}{right}. \defaultfont sets the font to sans.
 \newpagestyle{main}[\defaultfont\bfseries]{%
-  \headrule
-\sethead%
-[\ifthesection{\thesection{.} \space}{\ifthechapter{\thechapter{.} \space}{}}
-\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{
-\MakeUppercase{\chaptertitle}}}][][
-\thepage]
-{\ifthesection{\thesection{.} \space}{\ifthechapter{\thechapter{.} \space}{}}
-\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{
-\MakeUppercase{\chaptertitle}}}}{}{\thepage}
-  \setfoot[][][]{}{}{}
-}
+  \headrule%
+  \sethead
+   {\ifthesection{\thesection{.} \space}{\ifthechapter{\thechapter{.}%
+    \space}{}}\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{%
+    \MakeUppercase{\chaptertitle}}}}%
+   {}{\thepage}%
+  \setfoot{}{}{}%
+  }
+
+%% If the twoside option is set, the even pages can have different styles.
+%% These are defined in the sqaure brackets [left][centre][right]{}{}{}
+%% The headers are now controlled by twomain pagstyle.
+\newpagestyle{twomain}[\defaultfont\bfseries]{%
+  \headrule%
+  \sethead%
+    [\ifthechapter{\thechapter{.} \space}{}\ifthechapter{\chaptertitle}%
+     {\MakeUppercase{\chaptertitle}}]%
+    [][\thepage]%
+    {\ifthesection{\sectiontitle}{}}{}{\thepage}%
+  \setfoot[][][]{}{}{}%
+  }
 
 %% Redefine the plain page style to use the defaultfont for the
 %% numbering.
 \renewpagestyle{plain}[\defaultfont]{%
-\sethead[][][]{}{}{}
-  \setfoot[][\thepage][]{}{\thepage}{}
+  \sethead{}{}{}%
+  \setfoot{}{\thepage}{}%
 }
 
 %% FIX VBOX ERROR WITH 'twoside' OPTION
