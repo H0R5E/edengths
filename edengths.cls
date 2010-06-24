@@ -365,6 +365,8 @@
     {\bfseries\Huge}%
     [\vspace{1ex}%
     \titlerule]%
+    %% Control the spacing of the numbered chapters.
+    \titlespacing*{\chapter}{0pt}{0pt}{30pt}
     \titleformat{name=\chapter,numberless}[display]%
     {\huge\normalfont\defaultfont\filcenter%
     \titlerule}%
