@@ -146,7 +146,7 @@
 %% Format is {left}{center}{right}. \defaultfont sets the font to sans.
 \newpagestyle{main}[\defaultfont\bfseries]{%
   \headrule%
-  \sethead
+  \sethead%
    {\ifthesection{\thesection{.} \space}{\ifthechapter{\thechapter{.}%
     \space}{}}\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{%
     \MakeUppercase{\chaptertitle}}}}%
