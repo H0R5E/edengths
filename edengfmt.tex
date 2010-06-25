@@ -74,6 +74,9 @@
 %%				   be used to set different headers (for even
 %%				   pages) if twoside option is set.
 %%
+%%   25/06/10                      Setting bibsep as rapport3 sets it to zero.
+%%
+%%                                 Added singlespace option.
 %%
 
 %%%% SET THE MARGINS
@@ -101,11 +104,13 @@
 
 %% Pick one of these three options for global spacing.
 
+% \singlespacing                       % Single spaced
+
 \onehalfspacing                        % One and a half spaced
 
-%\doublespacing                        % Double spacing
+% \doublespacing                       % Double spacing
 
-%\setstretch{1.45}                     % Custom spacing. 1.3 ~ onehalf &
+% \setstretch{1.45}                    % Custom spacing. 1.3 ~ onehalf &
                                        % 1.6 ~ double spaced
 
 %%%% TABLE OF CONTENTS AND LISTS
@@ -131,6 +136,9 @@
 % \renewcommand{\listtablename}{List of tables}
 
 %%%% BIBLIOGRAPHY
+
+%% Set spacing between entrys (this varies between report and rapport3)
+\setlength{\bibsep}{2ex}
 
 %% Rename bibliography should you desire
 % \renewcommand{\bibname}{References}

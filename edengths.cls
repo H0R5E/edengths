@@ -102,6 +102,20 @@
 %%				    pages) at the end of makefrontmatter
 %%				    wrapper instead of main.
 %%
+%%   25/06/10                       Fixed parskip issue by switching to
+%%                                  rapport3 class when nopardent is set.
+%%                                  Had to reauthor the maketitle command
+%%                                  to do this as the original definition
+%%                                  was not consistent between the two
+%%                                  classes. Also removed the pardentflag
+%%                                  logical and added a \classfile command
+%%                                  to record which class to use.
+%%                                  Had to protect the sections from rapport3
+%%                                  as they got messed up.
+%%
+%%                                  Improved title and section for possible
+%%                                  12pt doublespace use.
+%%
 %%
 
 %% BEGIN CLASS FILE
@@ -118,6 +132,11 @@
 
 %% DECLARE VARIABLES AND COMMANDS FOR CLASS
 
+%% Define a command to switch between report and rapport3 classes.
+%% 'rapport3' class natural does brutalist spacing, but the bibspacing needs
+%% manually controlled as it sets this to zero.
+\newcommand{\classfile}{report}
+
 %% Define an option warning to print when unwanted options are given
 \newcommand{\OptionWarning}[1]{\ClassWarning{edengths}{Option '#1' not available for edengths.}}
 
@@ -126,14 +145,12 @@
 \newcommand{\OffOption}[1]{\DeclareOption{#1}{\OptionNotUsed\OptionWarning{#1}}}
 
 %% Define a command to declare the available options in the report class.
-\newcommand{\OnOption}[1]{\DeclareOption{#1}{\PassOptionsToClass{#1}{report}}}
+\newcommand{\OnOption}[1]{%
+               \DeclareOption{#1}{\PassOptionsToClass{#1}{\classfile}}}
 
 %% Make some booleans for special package options
 \newboolean{sansflag}                  % Default is for sans serif fonts for 
 \setboolean{sansflag}{true}            % captions and headers
-
-\newboolean{pardentflag}               % Should the paragraphs be indented
-\setboolean{pardentflag}{true}         % or not. Not add additional line.
 
 \newboolean{msfontsflag}	       % Use MS fonts
 \setboolean{msfontsflag}{false}
@@ -151,38 +168,7 @@
 \setboolean{twosideflag}{false}
 
 
-%% DECLARE OPTIONS
-
-%% Pass options to the report class which are still OK
-\OnOption{10pt}
-\OnOption{11pt}
-\OnOption{12pt}
-\OnOption{draft}
-\OnOption{final}
-\OnOption{fleqno}
-\OnOption{leqno}
-\OnOption{oneside}
-
-%% Set a boolean in addition for the twoside option
-\DeclareOption{twoside}{\setboolean{twosideflag}{true}%
-                        \PassOptionsToClass{twoside}{report}}
-
-%% Must have options.
-\OnOption{a4paper}	
-\OnOption{openright}     % Start chapters on righthand side pages
-\OnOption{titlepage}     % Title should be on it's own page.
-
-%% Switch off `report' options that won't be allowed.
-\OffOption{letterpaper}
-\OffOption{legalpaper}
-\OffOption{executivepaper}
-\OffOption{a5paper}
-\OffOption{b5paper}
-\OffOption{landscape}
-\OffOption{twocolumn}
-\OffOption{notitlepage}
-\OffOption{openany}
-\OffOption{openbib}
+%%%% DECLARE OPTIONS
 
 %% LOCAL OPTIONS
 
@@ -192,8 +178,8 @@
 %% Don't use the sans serif headers and captions
 \DeclareOption{nosans}{\setboolean{sansflag}{false}}
 
-%% Remove paragraph indent and add a line skip
-\DeclareOption{nopardent}{\setboolean{pardentflag}{false}}
+%% Remove paragraph indent and add a line skip by switch class to rapport3
+\DeclareOption{nopardent}{\renewcommand{\classfile}{rapport3}}
 
 %% Use MS fonts rather than latex default
 \DeclareOption{msfonts}{\setboolean{msfontsflag}{true}}
@@ -207,6 +193,37 @@
 %% Print equation labels next to equation numbers.
 \DeclareOption{labels}{\setboolean{labelflag}{true}}
 
+%% Must have options.
+\OnOption{a4paper}	
+\OnOption{openright}     % Start chapters on righthand side pages
+\OnOption{titlepage}     % Title should be on it's own page.
+
+%% Pass options to the report class which are still OK
+\OnOption{10pt}
+\OnOption{11pt}
+\OnOption{12pt}
+\OnOption{draft}
+\OnOption{final}
+\OnOption{fleqno}
+\OnOption{leqno}
+\OnOption{oneside}
+
+%% Set a boolean in addition for the twoside option
+\DeclareOption{twoside}{\setboolean{twosideflag}{true}%
+                        \PassOptionsToClass{twoside}{\classfile}}
+
+%% Switch off `report' options that won't be allowed.
+\OffOption{letterpaper}
+\OffOption{legalpaper}
+\OffOption{executivepaper}
+\OffOption{a5paper}
+\OffOption{b5paper}
+\OffOption{landscape}
+\OffOption{twocolumn}
+\OffOption{notitlepage}
+\OffOption{openany}
+\OffOption{openbib}
+
 %% OTHER OPTIONS
 
 %% Pass a warning for any options that are not known at this stage
@@ -216,9 +233,11 @@
 \ProcessOptions\relax
 
 %% Load report class with default setup
-\LoadClass[11pt,a4paper,openright,titlepage]{report}
+\LoadClass[11pt,a4paper,openright,titlepage]{\classfile}
 
 %% LOAD MAIN PACKAGES
+
+%\RequirePackage{parksip}
 
 %% Putting some packages into the class.
 %% There could be a number of options to ``turn off'' the styleised
@@ -324,26 +343,6 @@
 %% Make a special command called defaultfont which sets sans or not.
 \newcommand{\defaultfont}{\ifthenelse{\boolean{sansflag}}{\sffamily}{}}
 
-%% PARAGRAPH INDENTATION
-
-\ifthenelse{\boolean{pardentflag}}%
-  {%
-    %% Do nothing if flag is true.
-  }{%
-    %% No indentation for paragraphs, and set gap between paragraphs
-    \setlength{\parindent}{0mm}%
-    \setlength{\parskip}{2ex}%
-    %% Because we've set \parskip to a >0 value we set \partopsep to 0
-    %% so that it doesn't matter if you place a blank line before a list
-    \setlength{\partopsep}{0mm}
-    %% Repair problems in the TOC, LOF and LOT
-    \addtolength{\cftbeforechapskip}{-2ex}%
-    \addtolength{\cftbeforesecskip}{-2ex}%
-    \addtolength{\cftbeforesubsecskip}{-2ex}%
-    \addtolength{\cftbeforefigskip}{-2ex}%
-    \addtolength{\cftbeforetabskip}{-2ex}}
-
-
 %%%% FANCY CHAPTERS
 
 %% These are produced using the titlesec package.
@@ -354,7 +353,7 @@
 %% Check for fancychap flag and change chapter default if true
 \ifthenelse{\boolean{fancychapflag}}{%
   \titleformat{\chapter}[display]%
-    {\huge\normalfont\defaultfont\filleft%
+    {\huge\normalfont\defaultfont\filleft\onehalfspacing%
     \titlerule[1pt]%
     \vspace{1pt}%
     \titlerule}%
@@ -368,33 +367,32 @@
     %% Control the spacing of the numbered chapters.
     \titlespacing*{\chapter}{0pt}{0pt}{30pt}
     \titleformat{name=\chapter,numberless}[display]%
-    {\huge\normalfont\defaultfont\filcenter%
-    \titlerule}%
-    {\vspace{-2ex}}%
-    % Fix the titles when the parskip is increased.
-    {-1.75\parskip}%
-    {\huge}%
-    [\vspace{1ex}%
+    {\huge\normalfont\defaultfont\filcenter}%
+    %% Move the title to the top of the page
+    {\vspace{-6ex}}%
+    {0pt}%
+    {\titlerule\huge}%
+    [\vspace{\parskip}%
     \titlerule]
     %% Control the spacing of the un-numbered chapters.
     \titlespacing*{name=\chapter,numberless}{0pt}{0pt}{30pt}%
     }%
-  {%% Do nothing in this case
+  {%% Fix chapter spacing to one and a half
+    \titleformat{\chapter}[display]%
+    {\huge\normalfont\defaultfont\bfseries\onehalfspacing}%
+    {\chaptertitlename\ \thechapter}%
+    {20pt}%
+    {\Huge}%
   }
 
-% Protect the section spacing if parskip has increased
-\ifthenelse{\boolean{pardentflag}}%
-  {%
-    %% Do nothing if flag is true.
-  }{%
-    \titlespacing*{\chapter}      {0pt}{0pt}%
-                                          {30pt}%
-    \titlespacing*{\section}      {0pt}{3.5ex plus 1ex minus .2ex}%
-                                          {0.6ex plus .2ex}%
-    \titlespacing*{\subsection}   {0pt}{3.25ex plus 1ex minus .2ex}%
-                                          {0.1ex plus .1ex}%
-    \titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}%
-                                          {0.1ex plus .1ex}}
+%% Protect the section definitions from the rapport class as
+%% it does some weird alignment to them.
+\titleformat{\section}
+  {\normalfont\defaultfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\defaultfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\defaultfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
 
 %% Design some chapter headings for centred headings in the front matter like
 %% the dmathesis style thesis. These are applied to the front matter using
@@ -474,55 +472,51 @@
 \makeatletter
 
 \renewcommand{\maketitle}{%
-    \pagestyle{empty}%
-    %% Title, we use a parbox so the stuff afterwards and the hrules stay
-    %% in the space place irrespective of the title length (max 4 lines)
-    %% no paragraph indentation in title
-    \vspace*{1cm}%
+    \thispagestyle{empty}%
+    \null\vfil%
     \begin{center}%
-      \HRule%
-    \end{center}%
-    \vspace{3mm}%
-    \begin{center}%
+      {%\parskip=0pt
+      %% Title in a parbox 
+      \begin{onehalfspace}
+      \hrule%
+      \vskip 2em%
+      {\Huge\defaultfont\bfseries%
       \parbox[c][4cm][c]{0.9\linewidth}{%
-        \centering{\Huge\defaultfont\bfseries%
-        \begin{onehalfspace}%
-          \@title%
-        \end{onehalfspace}}%
+        %
+            \centering%
+            \@title%
+     %
+         }%
+       \vskip 1em%
+       \hrule%
       }%
-    \end{center}%
-    \vspace{3mm}%
-    \begin{center}%
-      \HRule%
-    \end{center}%
-    %%
-    %% Author
-    \vspace{0.5cm}%
-    \begin{center} {\Large \it \@author} \end{center}%
-    %%
-    %% University crest. Check crestflag.
-    \ifthenelse{\boolean{crestflag}}{%
-      \vspace{0.5cm}%
-      \begin{center}%
-        \includegraphics[width=2in]{\crestdefault}%
-      \end{center}%
-      }{% Do nothing if crestflag is false
+       \end{onehalfspace}
+       \vskip 1.5em%
+      %% Author
+      {\Large\itshape%
+      \begin{tabular}[t]{c}%
+         \@author%
+      \end{tabular}\par}%%
+      %% University crest. Check crestflag.
+      \ifthenelse{\boolean{crestflag}}{%
+        \vskip 10mm%
+        \centering%
+          \includegraphics[width=2in]{\crestdefault}\par%
+        \vskip 10mm%
+      }{%
+         \vskip 70mm%
       }%
-    \vfill%
-    %%
-    %% Degree, University
-    \begin{center}%
-      {\Large A thesis submitted in fulfilment of the requirements \\%
-	for the degree of \textit{Doctor of Philosophy} to \\%
-	[4mm]{\textsc{The University of Edinburgh}} \\}%
-      \vspace{1cm}%
-    \end{center}%
-    %%
-    %% Date
-    \begin{center}%
-       {\Large \@date}%
-    \end{center}
-}
+      %% Qualification
+      {\Large%
+      \begin{onehalfspace}
+      A thesis submitted in fulfilment of the requirements \\%
+      for the degree of \textit{Doctor of Philosophy} to   \\%
+      [4mm] {\textsc{The University of Edinburgh}}         \\%
+      %% Date
+      [10mm]\@date
+      \end{onehalfspace}}}%
+    \end{center}\par%
+    \vfil\null}
 
 %% Make at safe again.
 \makeatother
@@ -579,7 +573,7 @@
               }%
     {\bfseries\defaultfont\Large Figures\par}%
      \vspace*{10pt}%
-    {\parskip2.5\p@\@starttoc{lof}}%
+    {\@starttoc{lof}}%
      \mrule%
     {\bfseries\defaultfont\Large Tables\par}%
      \vspace*{10pt}%
@@ -594,11 +588,12 @@
 
 %% Wrapper to produce the front matter in one go.
 \newcommand{\makefrontmatter}[1]{%
+    %% Make the title page
+    \maketitle%
+    \cleardoublepage
+    %% Start the page numbering in roman
     \pagenumbering{roman}%
     \setcounter{page}{1}%
-    \maketitle%
-    %% Make sure dedication is on odd page.
-    \cleardoublepage
     \begin{precontent}%
        \input{#1}%
     \end{precontent}
