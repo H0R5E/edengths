@@ -92,14 +92,14 @@
 %%%%%              Put packages you want to use here                  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Allow coloured text. Particularly useful if using hyperref.
+%% Allow coloured text. Particularly useful if using 'hyperref'.
 %% Check out http://en.wikibooks.org/wiki/LaTeX/Colors for colours.
 \usepackage[usenames]{color}
 
-%% Typset URLs properly. If you're using hyperref you dont need this
-%% but you might need breakurl depending on your compilation route.
-%% Note: breakurl must be the last package (which is normally 
-%% hyperref).
+%% Typset URLs properly. This package does automatic breaking of long URLs.
+%% If you're using hyperref you dont need this but you might need the
+%% 'breakurl' package depending on your compilation route.
+%% Note: 'breakurl' must be the last package (which is normally 'hyperref').
 \usepackage{url} 
 
 %% AMS Math Packages
