@@ -247,8 +247,6 @@
 \RequirePackage{graphicx}		        % Allows inclusion of graphics
 						% in eps or jpg/pdf format
 
-\RequirePackage{color}				% Let there be color!!!
-
 %% General formatting specified in format.tex
 \RequirePackage[includehead]{geometry}          % A more modern way of setting 
                                                 % the page margins.
@@ -261,7 +259,6 @@
 
 %% Bibliography
 \RequirePackage{natbib}                         % Natbib with default options
-\RequirePackage{url}                            % Typeset URLs properly
 
 %% FONTS
 \RequirePackage{ae}                             % Virtual fonts for T1 encoded
@@ -300,7 +297,7 @@
    \RequirePackage[inner]{showlabels}%
 }{}
 
-%%%% MORE PACKAGES CAN BE DEFINED IN packages.tex
+%%%% MORE PACKAGES CAN BE LOADED IN packages.tex
 
 
 %% DEFINITIONS.
