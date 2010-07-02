@@ -585,12 +585,12 @@
 
 %% Wrapper to produce the front matter in one go.
 \newcommand{\makefrontmatter}[1]{%
-    %% Make the title page
-    \maketitle%
-    \cleardoublepage
     %% Start the page numbering in roman
     \pagenumbering{roman}%
     \setcounter{page}{1}%
+    %% Make the title page
+    \maketitle%
+    \cleardoublepage%
     \begin{precontent}%
        \input{#1}%
     \end{precontent}
