@@ -116,6 +116,11 @@
 %%                                  Improved title and section for possible
 %%                                  12pt doublespace use.
 %%
+%%   03/07/10			    Changed listoffiguresandtables to have
+%%				    the addcontentsline command after the
+%%				    chapter. Also changed the headings to
+%%				    section* commands for Figures and Tables.
+%%
 %%
 
 %% BEGIN CLASS FILE
