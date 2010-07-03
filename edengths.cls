@@ -121,6 +121,11 @@
 %%				    chapter. Also changed the headings to
 %%				    section* commands for Figures and Tables.
 %%
+%%				    Removed tocbibind package in favour of
+%%				    custom toc entries using addtocontentsline
+%%				    This allows correct anchors when using
+%%				    hyperref.
+%%
 %%
 
 %% BEGIN CLASS FILE
@@ -286,9 +291,9 @@
 
 \RequirePackage[titles,subfigure]{tocloft}    % Allow modifications to the
                                               % table of contents and lists
-\RequirePackage[nottoc]{tocbibind}            % Allow stuff to be added to the
-                                              % table of contents but dissable
-                                              % it's own inclusion. 
+% \RequirePackage[nottoc]{tocbibind}            % Allow stuff to be added to the
+%                                               % table of contents but dissable
+%                                               % it's own inclusion. 
 
 %% Use MS fonts if the option is given
 \ifthenelse{\boolean{msfontsflag}}{%
@@ -554,6 +559,26 @@
   #1
 }
 
+%% REDEFINE LOF AND LOT TO ADD LINE TO TOC
+
+%% Maually add a line to the contents with phantomsection
+%% to make better links if hyperref is used.
+\let\oldlistoffigures\listoffigures
+\renewcommand{\listoffigures}{
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{List of Figures}
+    \oldlistoffigures
+}
+
+\let\oldlistoftables\listoftables
+\renewcommand{\listoftables}{
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{List of Figures}
+    \oldlistoftables
+}
+
 %% DEFINITION OF A COMBINED FIGURE AND TABLE LIST
 
 %% Make a name for it.
@@ -568,11 +593,13 @@
     \else%
       \@restonecolfalse%
     \fi%
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\listfiguretablename}%
     \chapter*{\listfiguretablename%
               \@mkboth{\MakeUppercase\listfiguretablename}%
              {\MakeUppercase\listfiguretablename}%
               }%
-     \addcontentsline{toc}{chapter}{\listfiguretablename}%
      \section*{Figures}%
     {\@starttoc{lof}}%
      \mrule%
@@ -583,6 +610,18 @@
 
 %% Make at safe again.
 \makeatother
+
+%% REDEFINE BIBLIOGRAPHY TO ADD LINE TO TOC
+
+%% Maually add a line to the contents with phantomsection
+%% to make better links if hyperref is used.
+\let\oldbibliography\bibliography
+\renewcommand{\bibliography}{
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\bibname}
+    \oldbibliography
+}
 
 %% SHORTCUT WRAPPERS
 
