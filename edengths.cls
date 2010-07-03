@@ -563,17 +563,15 @@
     \else%
       \@restonecolfalse%
     \fi%
-    \addcontentsline{toc}{chapter}{\listfiguretablename}%
     \chapter*{\listfiguretablename%
               \@mkboth{\MakeUppercase\listfiguretablename}%
              {\MakeUppercase\listfiguretablename}%
               }%
-    {\bfseries\defaultfont\Large Figures\par}%
-     \vspace*{10pt}%
+     \addcontentsline{toc}{chapter}{\listfiguretablename}%
+     \section*{Figures}%
     {\@starttoc{lof}}%
      \mrule%
-    {\bfseries\defaultfont\Large Tables\par}%
-     \vspace*{10pt}%
+    \section*{Tables}%
     {\@starttoc{lot}}%
     \if@restonecol\twocolumn\fi%%
     }
