@@ -567,7 +567,7 @@
 \renewcommand{\listoffigures}{
     \cleardoublepage
     \phantomsection
-    \addcontentsline{toc}{chapter}{List of Figures}
+    \addcontentsline{toc}{chapter}{\listfigurename}
     \oldlistoffigures
 }
 
@@ -575,7 +575,7 @@
 \renewcommand{\listoftables}{
     \cleardoublepage
     \phantomsection
-    \addcontentsline{toc}{chapter}{List of Figures}
+    \addcontentsline{toc}{chapter}{\listtablename}
     \oldlistoftables
 }
 
