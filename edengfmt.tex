@@ -78,6 +78,9 @@
 %%
 %%                                 Added singlespace option.
 %%
+%%   08/07/10			   Put some plus minus into bibsep to reduce
+%%				   the number of entries that span pages.
+%%
 
 %%%% SET THE MARGINS
 
@@ -146,7 +149,8 @@
 %%%% BIBLIOGRAPHY
 
 %% Set spacing between entrys (this varies between report and rapport3)
-\setlength{\bibsep}{2ex}
+%% plus, minus reduces the number of entries which span pages.
+\setlength{\bibsep}{2ex plus 1ex minus 1ex}
 
 %% Rename bibliography should you desire
 % \renewcommand{\bibname}{References}
