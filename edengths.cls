@@ -32,7 +32,8 @@
 %% of Edinburgh school of Engineering. It is not `official', but conforms
 %% as best as possible to the regulation as detailed at:
 %%
-%%   http://www.scieng.ed.ac.uk/Postgraduate/PhD/settingoutyourthesis.htm
+%% http://www.ed.ac.uk/schools-departments/science-engineering/current-students/
+%% research/submitting-thesis
 %%
 %% Please feel free to alter the template to your own liking, but note that
 %% the template is made available under the GNU GPL and must be similarly
@@ -126,6 +127,21 @@
 %%				    This allows correct anchors when using
 %%				    hyperref.
 %%
+%%   13/10/10                       Loading the packages.tex file here now
+%%                                  so that showlabels can be executed last
+%%                                  (after hyperref for instance).
+%%
+%%   17/10/10			    Added bibhyphenpenalty which is used to 
+%%				    set hyphenpenalty just before the
+%%				    bibliography is called.
+%%
+%%   19/10/10                       Removed redefinition of bibliography in
+%%                                  place of edbibliography. This command
+%%                                  reacts to the nobib option which then
+%%                                  uses nobibliograpy command from the 
+%%                                  bibentry package. This package is now
+%%                                  loaded by default.
+%%
 %%
 
 %% BEGIN CLASS FILE
@@ -177,6 +193,9 @@
 \newboolean{twosideflag}	       % Is the twoside option set?
 \setboolean{twosideflag}{false}
 
+\newboolean{bibflag}	               % Should the bibliography be printed
+\setboolean{bibflag}{true}
+
 
 %%%% DECLARE OPTIONS
 
@@ -202,6 +221,9 @@
 
 %% Print equation labels next to equation numbers.
 \DeclareOption{labels}{\setboolean{labelflag}{true}}
+
+%% Repress the printing of the bibliography.
+\DeclareOption{nobib}{\setboolean{bibflag}{false}}
 
 %% Must have options.
 \OnOption{a4paper}	
@@ -269,6 +291,8 @@
 
 %% Bibliography
 \RequirePackage{natbib}                         % Natbib with default options
+\RequirePackage{bibentry}                       % Allow it text references and
+                                                % hiding of bibliograhy.
 
 %% FONTS
 \RequirePackage{ae}                             % Virtual fonts for T1 encoded
@@ -304,10 +328,11 @@
 
 %% Print labels on the page if option is given
 \ifthenelse{\boolean{labelflag}}{%
-   \RequirePackage[inner]{showlabels}%
+   \AtEndOfClass{\RequirePackage[inner]{showlabels}}%
 }{}
 
-%%%% MORE PACKAGES CAN BE LOADED IN packages.tex
+
+%%%% MORE PACKAGES CAN BE DEFINED IN packages.tex
 
 
 %% DEFINITIONS.
@@ -516,9 +541,9 @@
       %% Qualification
       {\Large%
       \begin{onehalfspace}
-      A thesis submitted in fulfilment of the requirements \\%
-      for the degree of \textit{Doctor of Philosophy} to   \\%
-      [4mm] {\textsc{The University of Edinburgh}}         \\%
+      Submitted in satisfaction of the requirements      \\%
+      for the degree of \textit{Doctor of Philosophy} in \\%
+      [4mm] {\textsc{The University of Edinburgh}}       \\%
       %% Date
       [10mm]\@date
       \end{onehalfspace}}}%
@@ -558,6 +583,37 @@
   \chapter{Declaration}%
   #1
 }
+
+\newcommand{\standarddeclaration}[1]{%
+  % Set up a box for the author name
+  \newsavebox{\mybox}%
+  \sbox{\mybox}{\bfseries{#1}}%
+  %
+  % Now measure its length
+  \newlength{\myboxlen}%
+  \settowidth{\myboxlen}{\usebox{\mybox}}%
+  %
+  \chapter{Declaration}%
+  %
+  I declare that this thesis was composed by myself, that the work contained herein is %
+  my own except where explicitly stated otherwise in the text, and that this work has not %
+  been submitted for any other degree or professional qualification except as specified.%
+  %
+  \vfill
+  %
+  % Add a line with the authors name underneath.
+  % The line should not be less than 0.4/textwidth
+  \noindent%
+  \ifthenelse{\lengthtest{ \myboxlen < 0.4\textwidth }}{%
+       \rule{0.4\textwidth}{.01in}\\}{%
+       \rule{\myboxlen}{.01in}\\%
+       }%
+  %
+  \usebox{\mybox}\\%
+  %
+  \vspace*{5cm}%
+}
+
 
 %% REDEFINE LOF AND LOT TO ADD LINE TO TOC
 
@@ -611,22 +667,33 @@
 %% Make at safe again.
 \makeatother
 
-%% REDEFINE BIBLIOGRAPHY TO ADD LINE TO TOC
+%% DEFINE BIBLIOGRAPHY HYPHENATION PENALTY
+\let\bibhyphenpenalty\hyphenpenalty
+
+%% DEFINE EDBIBLIOGRAPHY TO ADD LINE TO TOC AND SET
+%% HYPHENPENTALTY
 
 %% Maually add a line to the contents with phantomsection
 %% to make better links if hyperref is used.
-\let\oldbibliography\bibliography
-\renewcommand{\bibliography}{
-    \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{chapter}{\bibname}
-    \oldbibliography
+%% Choose between nobib or bib dependent on nobib option.
+\newcommand{\edbibliography}{%
+    \cleardoublepage%
+    \phantomsection%
+    \addcontentsline{toc}{chapter}{\bibname}%
+    \message{Bibliography hyphenation penalty: \the\bibhyphenpenalty}%
+    \hyphenpenalty=\bibhyphenpenalty%
+    \ifthenelse{\boolean{bibflag}}%
+    {%
+      \bibliography%
+    }{%
+      \nobibliography%
+    }
 }
 
 %% SHORTCUT WRAPPERS
 
 %% Wrapper to produce the front matter in one go.
-\newcommand{\makefrontmatter}[1]{%
+\newcommand{\makeprecontent}[1]{%
     %% Start the page numbering in roman
     \pagenumbering{roman}%
     \setcounter{page}{1}%
@@ -681,6 +748,11 @@
    \begin{center}%
     \rule{0.5\linewidth}{0.2mm}%
    \end{center}}
+
+%%%% INPUT THE USER DEFINED PACKAGES
+
+\InputIfFileExists{packages.tex}{\typeout{Succesful input of user packages.}}%
+                                {\typeout{No user packages.tex file found.}}
 
 %%%% INPUT THE USER DEFINED FORMATTING FILE
 

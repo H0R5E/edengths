@@ -1,5 +1,5 @@
 %%
-%% edengapp.tex - Addition to edength Latex2e thesis class
+%% precntnt.tex - LaTeX2e thesis class
 %%
 %% Copyright (C) 2010 Mathew Topper <damm_horse@yahoo.co.uk>
 %%
@@ -25,9 +25,9 @@
 %%
 %%   ABOUT
 %%
-%% This is required to start the appendicies for a Latex2e template which
+%% This is frontmatter prior to the contents for a Latex2e template which
 %% corresponds to the regulations regarding layout of a thesis submitted
-%% within the Universit of Edinburgh school of Engineering. It is not
+%% within the University of Edinburgh school of Engineering. It is not
 %% `official', but conforms as best as possible to the regulation as detailed
 %% at:
 %%
@@ -52,18 +52,45 @@
 %% more recent latex implementation of the thesis regulations and thus, this
 %% project was born. It is hoped that the template will be maintained by the
 %% Edinburgh Engineering PhD community once released.
+%%
+%%
+%%   RECORD OF REVISIONS
+%%
+%%     Date      Programmer        Description of change
+%%     ====      ==========        =====================
+%%   21/06/10    Mathew Topper     Original Code
+%%   19/10/10                      Renamed to precntnt.tex
+%%                                 frontmtr.tex now does all
+%%                                 front matter add can be
+%%                                 used in an include statement
+%%
+%%
 
-%%%% START APPENDIX
+%% INPUT THIS FILE USING THE /makefrontmatter{} COMMAND OR THE FORMATTING
+%% WON'T WORK PROPERLY
 
-%% These commands must '\included' to '\include' the appendx.tex files.
-\appendix
+%%%% DEDICATION
 
-%% Add appendicies heading to the TOC but without a number
-\noappendicestocpagenum
-\addappheadtotoc
+\dedication{%
+\begin{normalsize}To my loving cat,\end{normalsize}\\[0.2cm]%
+Roxy%
+}
 
-%% Change 'Chapter' to 'Appendix'
-\renewcommand{\chaptername}{Appendix}
+%%%% ABSTRACT
+\abstract{Blah blah, blah blah.}
 
-%% Equations should have the chapter letter in them.
-\renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}
+%%%% ACKNOWLEDGEMENTS
+
+\acknowledgements{%
+I'd like to thank Danger Mouse, for being so awesome.}
+
+%%%% DECLARATION
+
+%% Use a custom declaration
+
+% \declaration{I did it.}
+
+%% Use the standard regulation declaration. Enter your
+%% name for the signature line.
+
+\standarddeclaration{Robert Bobertson}

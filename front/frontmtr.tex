@@ -30,7 +30,8 @@
 %% of Edinburgh school of Engineering. It is not `official', but conforms
 %% as best as possible to the regulation as detailed at:
 %%
-%%   http://www.scieng.ed.ac.uk/Postgraduate/PhD/settingoutyourthesis.htm
+%% http://www.ed.ac.uk/schools-departments/science-engineering/current-students/
+%% research/submitting-thesis
 %%
 %% Please feel free to alter the template to your own liking, but note that
 %% the template is made available under the GNU GPL and must be similarly
@@ -56,24 +57,29 @@
 %%
 %%     Date      Programmer        Description of change
 %%     ====      ==========        =====================
-%%   21/06/10    Mathew Topper     Original Code
+%%   19/10/10    Mathew Topper     Ported from thesis.tex
+%%                                 to allow the front matter
+%%                                 to be included.
 %%
 %%
 
-%% INPUT THIS FILE USING THE /makefrontmatter{} COMMAND OR THE FORMATTING
-%% WON'T WORK PROPERLY
+%% The special formatting in the class requires the use of
+%% a particular command to call the front matter for everything
+%% before the table of contents. Just supply the path to the
+%% file containing the pre content front matter.
 
-%%%% DEDICATION
+\makeprecontent{front/precntnt.tex}
 
-\dedication{To Mum and Dad}
+%%%% TABLES AND LISTS
 
-%%%% ABSTRACT
-\abstract{Did some stuff.}
+%% Table of contents
+\tableofcontents
 
-%%%% ACKNOWLEDGEMENTS
+%% List of figure
+% \listoffigures
 
-\acknowledgements{Some more stuff}
+%% List of tables
+% \listoftables
 
-%%%% DECLARATION
-
-\declaration{I did it.}
+%% List of figures and tables
+\listoffiguresandtables

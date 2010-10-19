@@ -30,7 +30,8 @@
 %% the University of Edinburgh school of Engineering. It is not `official',
 %% but conforms as best as possible to the regulation as detailed at:
 %%
-%%   http://www.scieng.ed.ac.uk/Postgraduate/PhD/settingoutyourthesis.htm
+%% http://www.ed.ac.uk/schools-departments/science-engineering/current-students/
+%% research/submitting-thesis
 %%
 %% Please feel free to alter the template to your own liking, but note that
 %% the template is made available under the GNU GPL and must be similarly
@@ -51,7 +52,7 @@
 %% project was born. It is hoped that the template will be maintained by the
 %% Edinburgh Engineering PhD community once released.
 
-%%%% PACKAGES AUTOMATICALLY PROVIDED BY CLASS (No need to reload)
+%%%% PACKAGES AUTOMATTICALLY PROVIDED BY CLASS (No need to reload)
 
 %% ifthen     -   Provides simple boolean commands
 
@@ -68,6 +69,8 @@
 
 %% natbib     -   Natbib style bibliography with default options
 
+%% bibentry   -   Allow it text references and hiding of bibliograhy.
+
 %% ae         -   Nicer pdf output using T1 fonts
 
 %% fontenc    -   T1 encoding stops some errors for unknown fonts
@@ -79,6 +82,9 @@
 %% subfig     -   Use subfigures in captions and formatting of such.
 
 %% tocloft    -   Allow modifications to the table of contents and lists
+
+%% tocbibind  -   Allow stuff to be added to the table of contents but disable
+%%                it's own inclusion. 
 
 %% mathptmx   -   Option 'msfonts' to use these alternative font packages.
 %% helvet         Note: you could add your own font packages in this file.
@@ -105,7 +111,10 @@
 \usepackage{amsthm}
 
 %% Fancy chemical symbols (Might require installation)
-% \usepackage[version=3]{mhchem}
+\usepackage[version=3]{mhchem}
+
+%% Better fractions ie 1/2 with diagonal slash
+\usepackage{nicefrac}
 
 %% Nicer tables
 \usepackage{booktabs}
