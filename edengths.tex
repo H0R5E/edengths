@@ -31,7 +31,8 @@
 %% of Edinburgh school of Engineering. It is not `official', but conforms
 %% as best as possible to the regulation as detailed at:
 %%
-%%   http://www.scieng.ed.ac.uk/Postgraduate/PhD/settingoutyourthesis.htm
+%% http://www.ed.ac.uk/schools-departments/science-engineering/current-students/
+%% research/submitting-thesis
 %%
 %% Please feel free to alter the template to your own liking, but note that
 %% the template is made available under the GNU GPL and must be similarly
@@ -68,17 +69,27 @@
 %%
 %%                                  Added includeonly command.
 %%
+%%   13/10/10                       Removed the input of packages.tex
+%%                                  this is now dealt with in the class
+%%                                  file.
+%%
 %%
 
 %%%% LOAD DOCUMENT CLASS
 
-\documentclass[11pt,crest,msfonts,fancychap,nopardent]{edengths}
+\documentclass[11pt,crest,nopardent,msfonts,fancychap]{edengths}
+
+%% Class options go in the square brackets above
+%% i.e. \documentclass[options]{edengths}
 
 %% Default report class options are:
+%% (These are automatically included)
 %%
 %% a4paper
 %% openright - Start chapters on righthand side pages
 %% titlepage - Title should be on it's own page
+%%
+
 
 %% Standard available report class options are:
 %%
@@ -102,10 +113,11 @@
 %% fancychap - Use fancy chapter headings like jthesis
 %% crest     - Use a crest on the front page
 %% labels    - Print labels in spine margin.
+%% nobib     - do not print the bibliography
 
 %% ADDITIONAL FORMATTING can be done in 'edengfmt.tex' where the page
 %% dimensions, header/footers, table of contents and the names of 
-%% the bibliography and list etc can be altered.
+%% the bibliography and other formatting settings can be altered.
 %% IN PARTICULAR THE LINE SPACING IS SET IN 'edengfmt.tex'
 
 %% The class file should automatically detect pdflatex and provide
@@ -113,7 +125,8 @@
 
 %%%% LOAD USER DEFINED PACKAGES.
 
-\input{packages}
+%% These are in ``packages.tex'' file and is automattically loaded
+%% by the class file
 
 %%%% LOAD USER DEFINED COMMANDS.
 
@@ -146,8 +159,11 @@ a Phd Thesis About Clever Engineering Stuff at The University of Edinburgh}
 %%%% CHAPTERS TO INCLUDE
 
 %% You may restrict which chapters are compiled using \includeonly
-%% appendix/edengapp MUST ALWAYS BE IN THE LIST.
-% \includeonly{appendix/edengapp, chapter1/chapter1, appendix/appendx1}
+%% appendix/edengapp must be in the list if appendicies are included.
+%% To not print the bibliography use the nobib class option.
+
+% \includeonly{front/frontmtr}%, appendix/edengapp, appendix/appendx1}
+
 
 %%%% START DOCUMENT
 
@@ -155,26 +171,7 @@ a Phd Thesis About Clever Engineering Stuff at The University of Edinburgh}
 
 %%%% FRONT MATTER
 
-%% The special formatting in the class requires the use of
-%% a particular command to call the front matter (everything
-%% before the table of contents). Just supply the path to the
-%% file containing the front matter.
-
-\makefrontmatter{front/frontmtr.tex}
-
-%%%% TABLES AND LISTS
-
-%% Table of contents
-\tableofcontents
-
-%% List of figure
-\listoffigures
-
-%% List of tables
-\listoftables
-
-%% List of figures and tables
-% \listoffiguresandtables
+\include{front/frontmtr}
 
 %%%% START MAIN BODY TEXT
 
@@ -204,8 +201,9 @@ a Phd Thesis About Clever Engineering Stuff at The University of Edinburgh}
 
 %%%% WRITE OUT BIBLIOGRAPHY
 
-%% Path to bib file.
-\bibliography{bib/edengref}{}
+%% Path to bib file. Use \edbibliography command here or nobib
+%% option and bibhyphenpenalty variable will not work.
+\edbibliography{bib/edengref}
 
 %% Path to style file. It's recommand you use the provided style file
 %% (a variation on plainnat) as it does italic et als and reduces
