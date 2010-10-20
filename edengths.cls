@@ -142,6 +142,10 @@
 %%                                  bibentry package. This package is now
 %%                                  loaded by default.
 %%
+%%   20/10/10                       Bugfix. Added pagestyle command to
+%%                                  /startbody which is needed if the
+%%                                  front matter is not compiled.
+%%
 %%
 
 %% BEGIN CLASS FILE
@@ -714,9 +718,14 @@
 
 %% Wrapper to call commands to start the main body text.
 \newcommand{\startbody}{%
-    \cleardoublepage
+    \cleardoublepage%
     \pagenumbering{arabic}%
-    \setcounter{page}{1}}
+    \setcounter{page}{1}%
+    %% Use alternative style if twosideflag is true
+    \ifthenelse{\boolean{twosideflag}}%
+      {\pagestyle{twomain}}%
+      {\pagestyle{main}}%
+    }
 
 %% Appendix work is now done in a separate file
 %% appendix/edengapp.tex
