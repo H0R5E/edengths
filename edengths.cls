@@ -545,9 +545,8 @@
       %% Qualification
       {\Large%
       \begin{onehalfspace}
-      Submitted in satisfaction of the requirements      \\%
-      for the degree of \textit{Doctor of Philosophy} in \\%
-      [4mm] {\textsc{The University of Edinburgh}}       \\%
+      \textit{Doctor of Philosophy} \\%
+      [4mm] {\textsc{The University of Edinburgh}} \\%
       %% Date
       [10mm]\@date
       \end{onehalfspace}}}%
