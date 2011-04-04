@@ -146,10 +146,16 @@
 %%                                  /startbody which is needed if the
 %%                                  front matter is not compiled.
 %%
+%%   29/10/10                       Adding hyperref option. It loads the
+%%                                  pdftex option if pdflatex is used and
+%%                                  dvipdfm otherwise. Thus the dvi route
+%%                                  must go dvi->pdf. No postscript step.
+%%                                  hypcap package is also loaded for better
+%%                                  linking to figures.
+%%
 %%   04/04/11                       Set a qualification command to set
 %%                                  a custom qualification on the front
 %%                                  page.
-%%
 %%
 
 %% BEGIN CLASS FILE
@@ -204,6 +210,9 @@
 \newboolean{bibflag}	               % Should the bibliography be printed
 \setboolean{bibflag}{true}
 
+\newboolean{hyperflag}
+\setboolean{hyperflag}{false}          % Use hyperref package?
+
 
 %%%% DECLARE OPTIONS
 
@@ -232,6 +241,9 @@
 
 %% Repress the printing of the bibliography.
 \DeclareOption{nobib}{\setboolean{bibflag}{false}}
+
+%% Use hyperref
+\DeclareOption{hyper}{\setboolean{hyperflag}{true}}
 
 %% Must have options.
 \OnOption{a4paper}	
@@ -333,6 +345,17 @@
   \RequirePackage[scaled=.92]{helvet}%
 }{%
 }
+
+%% Load the hyperref package if the option is set. Set to the correct driver
+%% dependant on the ifpdf package. Also load hypcap for better linking to 
+%% figures.
+\ifthenelse{\boolean{pdf}}%
+          {\newcommand{\hyperdriver}{pdftex}}%
+          {\newcommand{\hyperdriver}{dvipdfm}}
+\ifthenelse{\boolean{hyperflag}}{%
+   \AtEndOfClass{\RequirePackage[\hyperdriver]{hyperref}}%
+   \AtEndOfClass{\RequirePackage[all]{hypcap}}%
+}{}
 
 %% Print labels on the page if option is given
 \ifthenelse{\boolean{labelflag}}{%
@@ -778,10 +801,11 @@
 
 %%%% INPUT THE USER DEFINED FORMATTING FILE
 
+\AtEndOfClass{%
 \InputIfFileExists{edengfmt.tex}{\typeout{Succesful input of formatting file.}}%
                                 {\ClassError{edengths}{%
 				 Formatting file not found!%
                                 }{%
                                  Oh dear! Something's gone wrong. \MessageBreak%
-				 Where is edengfmt.tex? I need it!}}
-
+				 Where is edengfmt.tex? I need it!}}%
+}
