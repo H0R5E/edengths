@@ -157,6 +157,12 @@
 %%                                  a custom qualification on the front
 %%                                  page.
 %%
+%%                                  Added a frontchapter command for adding
+%%                                  chapters in the front matter that do
+%%                                  not have numbers but do have TOC
+%%                                  entrys. Starred version has no TOC
+%%                                  entry.
+%%
 
 %% BEGIN CLASS FILE
 \NeedsTeXFormat{LaTeX2e}
@@ -675,6 +681,39 @@
     \oldlistoftables
 }
 
+%% ADD A FRONT MATTER CHAPTER COMMAND.
+%% STARRED VERSION HAS NO TOC ENTRY.
+
+%% Allow internal use of @ symbol
+\makeatletter
+
+\newcommand{\frontchapter}{\@ifstar
+                     \frontchapterStar%
+                     \frontchapterNoStar%
+}
+
+\newcommand{\frontchapterStar}[1]{%
+    \cleardoublepage%
+    \phantomsection%
+    \chapter*{{#1}%
+             \@mkboth{\MakeUppercase{#1}}%
+                     {\MakeUppercase{#1}}%
+             }%
+    }
+
+\newcommand{\frontchapterNoStar}[1]{%
+    \cleardoublepage%
+    \phantomsection%
+    \addcontentsline{toc}{chapter}{#1}%
+    \chapter*{{#1}%
+             \@mkboth{\MakeUppercase{#1}}%
+                     {\MakeUppercase{#1}}%
+             }%
+    }
+
+%% Make at safe again.
+\makeatother
+
 %% DEFINITION OF A COMBINED FIGURE AND TABLE LIST
 
 %% Make a name for it.
@@ -689,18 +728,12 @@
     \else%
       \@restonecolfalse%
     \fi%
-    \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{chapter}{\listfiguretablename}%
-    \chapter*{\listfiguretablename%
-              \@mkboth{\MakeUppercase\listfiguretablename}%
-             {\MakeUppercase\listfiguretablename}%
-              }%
-     \section*{Figures}%
-    {\@starttoc{lof}}%
-     \mrule%
+    \frontchapter{\listfiguretablename}%
+    \section*{Figures}%
+     {\@starttoc{lof}}%
+    \mrule%
     \section*{Tables}%
-    {\@starttoc{lot}}%
+     {\@starttoc{lot}}%
     \if@restonecol\twocolumn\fi%%
     }
 
