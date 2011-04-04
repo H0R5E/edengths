@@ -73,6 +73,14 @@
 %%                                  this is now dealt with in the class
 %%                                  file.
 %%
+%%   20/10/10                       Added 'nobib' option to stop the
+%%                                  bibliography being printed and now
+%%                                  the frontmatter is also entered in 
+%%                                  an include statement.
+%%
+%%   29/10/10                       Added 'hyper' option to use hyperref
+%%                                  to add clickable links.
+%%
 %%   04/04/11                       Set a qualification command to set
 %%                                  a custom qualification on the front
 %%                                  page.
@@ -80,7 +88,7 @@
 
 %%%% LOAD DOCUMENT CLASS
 
-\documentclass[11pt,crest,nopardent,msfonts,fancychap]{edengths}
+\documentclass[11pt,crest,nopardent,msfonts,fancychap,hyper]{edengths}
 
 %% Class options go in the square brackets above
 %% i.e. \documentclass[options]{edengths}
@@ -117,11 +125,17 @@
 %% crest     - Use a crest on the front page
 %% labels    - Print labels in spine margin.
 %% nobib     - do not print the bibliography
+%% hyper     - Use the hyperref package to put clickable links into 
+%%             the document. Use \autoref{fig:example} now instead of,
+%%             say, figure~\ref{fig:example}. Settings are in
+%%             edengfmt.tex.
 
 %% ADDITIONAL FORMATTING can be done in 'edengfmt.tex' where the page
 %% dimensions, header/footers, table of contents and the names of 
 %% the bibliography and other formatting settings can be altered.
-%% IN PARTICULAR THE LINE SPACING IS SET IN 'edengfmt.tex'
+%% IN PARTICULAR THE LINE SPACING IS SET IN 'edengfmt.tex' AND
+%% THE HYPERREF OPTIONS ARE SET HERE TOO. THIS SETS THE NAME OF
+%% THE PDF, FOR EXAMPLE.
 
 %% The class file should automatically detect pdflatex and provide
 %% the right options.
@@ -161,6 +175,9 @@ a Phd Thesis About Clever Engineering Stuff at The University of Edinburgh}
 
 %% Year of submission
 \date{2010}
+
+%% NOTE - IF YOUR USING hyper THEN THE ABOVE DETAILS NEED SET IN
+%% edengfmt.tex AS WELL.
 
 %%%% CHAPTERS TO INCLUDE
 

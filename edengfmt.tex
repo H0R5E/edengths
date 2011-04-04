@@ -89,6 +89,11 @@
 %%				   and the bibliography.
 %%
 %%   20/10/10                      Added space to the footer.
+%%
+%%   29/10/10                      Added options for hyperref and defined 
+%%                                 \autoref and \Autoref commands. They are in
+%%                                 a wrapper to stop error if hyper option is
+%%                                 not used.
 
 
 %% IN THIS FILE YOU CAN:
@@ -99,8 +104,9 @@
 %%   ** ADD VERTICAL SPACE IN ALIGNED EQUATIONS
 %%   ** FORMAT THE TABLE OF CONTENTS AND LISTS
 %%   ** FORMAT THE BIBLIOGRAPHY
-%%   ** FORMAT FANCY HEADERS
 %%   ** CHANGE FONT SIZE OF SUBFIGURE CAPTIONS
+%%   ** HYPERREF SETTINGS
+%%   ** FORMAT FANCY HEADERS
 %%   ** FIX VBOX ERROR WITH 'twoside' OPTION
 
 %%%% SET THE MARGINS
@@ -187,6 +193,74 @@
 %% Rename bibliography should you desire
 % \renewcommand{\bibname}{References}
 
+%%%% SUBFIGURE CAPTIONS
+
+%% Change size of subfigure captions.
+%%\captionsetup[subfloat]{font=normalsize}
+
+
+%%%% HYPERREF (for hyper package option).
+
+%% Provide options to hyperref. The boolean wrapper
+%% makes sure it won't mess up if hyper option is not used.
+\ifthenelse{\boolean{hyperflag}}{%
+  \hypersetup{
+      plainpages=false,
+      breaklinks=true,
+      pdftitle={`edengths.cls': The Latex Class File for Formatting
+                a Phd Thesis About Clever Engineering Stuff at
+                The University of Edinburgh},
+      pdfauthor={Robert Boberson},
+      pdfsubject={Latex Stuff},   % subject of the document
+      pdfkeywords={Latex, Thesis Template}, % list of keywords
+      colorlinks=true,
+      linkcolor=BrickRed,        % color of internal links
+      citecolor=Blue,        % color of links to bibliography
+      filecolor=Black,        % color of file links
+      urlcolor=Violet          % color of external links
+%       linkcolor=Black,        % Boring colors
+%       citecolor=Black,
+%       filecolor=Black,
+%       urlcolor=Black 
+  }%
+
+  %% \autoref or \Autoref is better to use rather than \ref 
+  %% as when using hyperref it links``title number'' rather 
+  %% than just the number.
+
+  %% Create an all uppercase version of autoref, Autoref
+  \let\orgautoref\autoref
+  \providecommand{\Autoref}
+          {\def\equationautorefname{Equation}%
+          \def\figureautorefname{Figure}%
+          \def\subfigureautorefname{Figure}%
+          \def\Itemautorefname{Item}%
+          \def\tableautorefname{Table}%
+          \def\sectionautorefname{Section}%
+          \def\subsectionautorefname{Section}%
+          \def\subsubsectionautorefname{Section}%
+          \def\chapterautorefname{Chapter}%
+          \def\appendixautorefname{Appendix}%
+          \def\partautorefname{Part}%
+          \orgautoref}
+  
+  \renewcommand{\autoref}
+          {\def\equationautorefname{equation}%
+          \def\figureautorefname{figure}%
+          \def\subfigureautorefname{figure}%
+          \def\Itemautorefname{item}%
+          \def\tableautorefname{table}%
+          \def\sectionautorefname{section}%
+          \def\subsectionautorefname{section}%
+          \def\subsubsectionautorefname{section}%
+          \def\chapterautorefname{chapter}%
+          \def\appendixautorefname{appendix}%
+          \def\partautorefname{part}%
+          \orgautoref}
+
+  }%
+  {}
+
 %%%% FANCY HEADERS (using titlesec)
 
 %% You can mess around with these if you like, but I wouldn't bother, really.
@@ -228,15 +302,11 @@
   \setfoot{}{\thepage}{}%
 }
 
-%% SUBFIGURE CAPTIONS
-
-%% Change size of subfigure captions.
-%%\captionsetup[subfloat]{font=normalsize}
-
-
-%% FIX VBOX ERROR WITH 'twoside' OPTION
+%%%% FIX VBOX ERROR WITH 'twoside' OPTION
 
 %% Makes all pages the height of the text on that page
 \raggedbottom
+
+
 
 
