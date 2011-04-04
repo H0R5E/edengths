@@ -146,6 +146,10 @@
 %%                                  /startbody which is needed if the
 %%                                  front matter is not compiled.
 %%
+%%   04/04/11                       Set a qualification command to set
+%%                                  a custom qualification on the front
+%%                                  page.
+%%
 %%
 
 %% BEGIN CLASS FILE
@@ -492,7 +496,7 @@
           {\newcommand{\crestdefault}{front/EdUniCrest.eps}}
 
 \newcommand{\crestfile}[1]{%
-    \renewcommand{\crestdefault{#1}}}
+    \renewcommand{\crestdefault}{#1}}
 
 %% If crestflag is true, check the path of the crest and set
 %% crestflag to false if the path is wrong
@@ -504,6 +508,12 @@
   }{% Do nothing if crestflag is false
   }
 
+%% Add a command for defining the title of the qualification
+\newcommand{\qualidefault}{\textit{Doctor of Philosophy}}%
+
+\newcommand{\qualification}[1]{%
+    \renewcommand{\qualidefault}{#1}}
+
 %% Allow internal use of @ symbol
 \makeatletter
 
@@ -513,26 +523,25 @@
     \begin{center}%
       {%\parskip=0pt
       %% Title in a parbox 
-      \begin{onehalfspace}
       \hrule%
       \vskip 2em%
       {\Huge\defaultfont\bfseries%
-      \parbox[c][4cm][c]{0.9\linewidth}{%
-        %
+        \parbox[c][4cm][c]{0.9\linewidth}{%
+          \begin{onehalfspace}%
             \centering%
             \@title%
-     %
-         }%
-       \vskip 1em%
-       \hrule%
+          \end{onehalfspace}%
+        }%
       }%
-       \end{onehalfspace}
-       \vskip 1.5em%
+      \vskip 2em%
+      \hrule%
+      \vskip 1.5em%
       %% Author
       {\Large\itshape%
-      \begin{tabular}[t]{c}%
-         \@author%
-      \end{tabular}\par}%%
+      \parbox[c]{0.9\linewidth}{%
+        \centering%
+        \@author%
+      }}%
       %% University crest. Check crestflag.
       \ifthenelse{\boolean{crestflag}}{%
         \vskip 10mm%
@@ -544,12 +553,17 @@
       }%
       %% Qualification
       {\Large%
-      \begin{onehalfspace}
-      \textit{Doctor of Philosophy} \\%
+      \parbox[c]{10cm}{%
+        \begin{onehalfspace}%
+          \centering%
+          \qualidefault%
+        \end{onehalfspace}%
+      }\\%
+      %% University
       [4mm] {\textsc{The University of Edinburgh}} \\%
       %% Date
       [10mm]\@date
-      \end{onehalfspace}}}%
+      }}%
     \end{center}\par%
     \vfil\null}
 
