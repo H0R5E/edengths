@@ -291,7 +291,7 @@
 \ProcessOptions\relax
 
 %% Load report class with default setup
-\LoadClass[11pt,a4paper,openright,titlepage]{\classfile}
+\LoadClass[a4paper,openright,titlepage]{\classfile}
 
 %% LOAD MAIN PACKAGES
 
