@@ -163,6 +163,15 @@
 %%                                  entrys. Starred version has no TOC
 %%                                  entry.
 %%
+%%   13/10/11                       Removed 11pt option from class file load
+%%                                  as it overided the 10pt option if it was
+%%                                  used.
+%%
+%%                                  Moved the loading of packages.tex to before
+%%                                  the loading of the package classes so that
+%%                                  the \PassOptionsToPackage command can be
+%%                                  used to influence the default packages.
+%%
 
 %% BEGIN CLASS FILE
 \NeedsTeXFormat{LaTeX2e}
@@ -293,7 +302,13 @@
 %% Load report class with default setup
 \LoadClass[a4paper,openright,titlepage]{\classfile}
 
-%% LOAD MAIN PACKAGES
+%%%% INPUT THE USER DEFINED PACKAGES (Loading here allows options to be passed
+%%%%                                  to the auto loaded packages)
+
+\InputIfFileExists{packages.tex}{\typeout{Succesful input of user packages.}}%
+                                {\typeout{No user packages.tex file found.}}
+
+%%%% LOAD MAIN PACKAGES
 
 %\RequirePackage{parksip}
 
@@ -826,11 +841,6 @@
    \begin{center}%
     \rule{0.5\linewidth}{0.2mm}%
    \end{center}}
-
-%%%% INPUT THE USER DEFINED PACKAGES
-
-\InputIfFileExists{packages.tex}{\typeout{Succesful input of user packages.}}%
-                                {\typeout{No user packages.tex file found.}}
 
 %%%% INPUT THE USER DEFINED FORMATTING FILE
 

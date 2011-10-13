@@ -51,8 +51,17 @@
 %% more recent latex implementation of the thesis regulations and thus, this
 %% project was born. It is hoped that the template will be maintained by the
 %% Edinburgh Engineering PhD community once released.
+%%
+%%
+%%   RECORD OF REVISIONS
+%%
+%%     Date      Programmer         Description of change
+%%     ====      ==========         =====================
+%%   13/10/11    Mathew Topper      Added \PassOptionsToPackage example.
 
-%%%% PACKAGES AUTOMATTICALLY PROVIDED BY CLASS (No need to reload)
+%%%% PACKAGES AUTOMATTICALLY PROVIDED BY CLASS 
+%%%%  (No need to reload.  Options can be provided to these packages using the
+%%%%   \PassOptionsToPackage command as per example at end.)
 
 %% ifthen     -   Provides simple boolean commands
 
@@ -126,5 +135,12 @@
 
 %% Proper hythenation
 \usepackage[british,english]{babel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%             Pass OPTIONS to packages you want here              %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Pass natbib the option 'numbers'
+% \PassOptionsToPackage{numbers}{natbib}
 
 
