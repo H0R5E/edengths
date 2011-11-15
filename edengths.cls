@@ -349,7 +349,7 @@
    \RequirePackage[nobottomtitles*,pagestyles,clearempty,bf,sf]{titlesec}%
    \RequirePackage[labelfont={sf,bf}, textfont=sf]{caption, subfig}%
   }{%
-   \RequirePackage[nobottomtitles*,pagestyles,clearempty]{titlesec}%
+   \RequirePackage[nobottomtitles*,pagestyles,clearempty,bf]{titlesec}%
    \RequirePackage[labelfont=bf]{caption, subfig}%
   }
 
@@ -558,26 +558,45 @@
 \newcommand{\qualification}[1]{%
     \renewcommand{\qualidefault}{#1}}
 
+%% Make a box and a height to record the height of the title
+\newsavebox{\titlebox}
+\newlength{\titleboxheight}
+
 %% Allow internal use of @ symbol
 \makeatletter
 
 \renewcommand{\maketitle}{%
+    %% Make the dummy title box to check the height
+    \savebox{\titlebox}{%
+      \parbox{0.9\linewidth}{%
+        {\Huge\defaultfont\bfseries%
+        \begin{onehalfspace}%
+          \centering%
+          \@title%
+        \end{onehalfspace}%
+        }%
+      }%
+    }%
+    %% Get the height and if it's < 4cm set it to 4cm.
+    \setlength{\titleboxheight}{\ht\titlebox+\dp\titlebox}%
+    \ifthenelse{\lengthtest{ \titleboxheight < 4cm }}{
+       \setlength{\titleboxheight}{4cm}}{}%
     \thispagestyle{empty}%
     \null\vfil%
     \begin{center}%
       {%\parskip=0pt
-      %% Title in a parbox 
+      %% Title in a parbox. Set its height to \titleboxheight
       \hrule%
-      \vskip 2em%
+      \vskip 1em%
       {\Huge\defaultfont\bfseries%
-        \parbox[c][4cm][c]{0.9\linewidth}{%
+        \parbox[c][\titleboxheight][c]{0.9\linewidth}{%
           \begin{onehalfspace}%
             \centering%
             \@title%
           \end{onehalfspace}%
         }%
       }%
-      \vskip 2em%
+      \vskip 1em%
       \hrule%
       \vskip 1.5em%
       %% Author
