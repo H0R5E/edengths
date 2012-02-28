@@ -172,10 +172,20 @@
 %%                                  the \PassOptionsToPackage command can be
 %%                                  used to influence the default packages.
 %%
+%%   28/02/12                       Took the font options out of the titlesec
+%%                                  definitions as the chapter and section 
+%%                                  definitions themselves override these
+%%                                  options making them redundant. I also did
+%%                                  a little reorgansation to make the
+%%                                  formatting definitions a little clearer.
+%%                                  \defaultfont is the main control of the sans
+%%                                  font option.
+%%
 
 %% BEGIN CLASS FILE
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{edengths}[2010/06/14 University of Edinburgh Engineering thesis class]
+\ProvidesClass{edengths}[2012/02/12 University of Edinburgh Engineering thesis %
+                        class]
 
 %% LOAD PACKAGES REQUIRED FOR CLASS
 
@@ -335,37 +345,41 @@
 \RequirePackage{bibentry}                       % Allow it text references and
                                                 % hiding of bibliograhy.
 
-%% FONTS
+%% FONTS 
 \RequirePackage{ae}                             % Virtual fonts for T1 encoded
                                                 % CMR-fonts.
 \RequirePackage[T1]{fontenc}                    % T1 encoding stops some errors
                                                 % for unknown fonts
 
+\ifthenelse{\boolean{msfontsflag}}{%		% Use MS fonts if the option is
+  \RequirePackage{mathptmx}%			% given
+  \RequirePackage[scaled=.92]{helvet}%
+  }{%
+  }
+
 %% Provide the font options to packages for the sans serif fonts
-%% This loads titlesec, caption and subfig. titlesec does headers
-%% and title formating. caption does caption formatting and
+%% This loads caption and subfig. Caption does caption formatting and
 %% subfig allows subfigures.
 \ifthenelse{\boolean{sansflag}}{%
-   \RequirePackage[nobottomtitles*,pagestyles,clearempty,bf,sf]{titlesec}%
    \RequirePackage[labelfont={sf,bf}, textfont=sf]{caption, subfig}%
   }{%
-   \RequirePackage[nobottomtitles*,pagestyles,clearempty,bf]{titlesec}%
    \RequirePackage[labelfont=bf]{caption, subfig}%
   }
 
+%% TITLES AND CAPTIONS
 
-\RequirePackage[titles,subfigure]{tocloft}    % Allow modifications to the
-                                              % table of contents and lists
-% \RequirePackage[nottoc]{tocbibind}            % Allow stuff to be added to the
-%                                               % table of contents but dissable
-%                                               % it's own inclusion. 
+%% Titlesec does headers and title formating. The definitions for the chapter
+%% headers are set below
+\RequirePackage[nobottomtitles*,pagestyles,clearempty]{titlesec}%
 
-%% Use MS fonts if the option is given
-\ifthenelse{\boolean{msfontsflag}}{%
-  \RequirePackage{mathptmx}%
-  \RequirePackage[scaled=.92]{helvet}%
-}{%
-}
+%% Allow modifications to the able of contents and lists
+\RequirePackage[titles,subfigure]{tocloft}%
+
+%% Allow stuff to be added to the table of contents but dissable it's own
+%% inclusion.
+% \RequirePackage[nottoc]{tocbibind}
+
+%% HYPERLINKS
 
 %% Load the hyperref package if the option is set. Set to the correct driver
 %% dependant on the ifpdf package. Also load hypcap for better linking to 
@@ -378,6 +392,8 @@
    \AtEndOfClass{\RequirePackage[all]{hypcap}}%
 }{}
 
+%% LABELS
+
 %% Print labels on the page if option is given
 \ifthenelse{\boolean{labelflag}}{%
    \AtEndOfClass{\RequirePackage[inner]{showlabels}}%
@@ -386,14 +402,17 @@
 
 %%%% MORE PACKAGES CAN BE DEFINED IN packages.tex
 
+%%%% FORMAT DEFINITIONS.
 
-%% DEFINITIONS.
+%% FONTS
 
-% FONTS
+%% Make a special command called defaultfont which sets sans or not. This is
+%% the main control for changing the font style, only caption and subfig are
+%% set otherwise, above.
+\newcommand{\defaultfont}{\ifthenelse{\boolean{sansflag}}{\sffamily}{}}
 
-%% Start by considering the optional fonts first. In the normal mode a lot
-%% of work has to be done to the table of contents otherwise there is no
-%% action taken, so...
+%% Considering the optional fonts a lot of work has to be done to the table of
+%% contents otherwise there is no action taken.
 \ifthenelse{\boolean{sansflag}}%
   {%
     %% Make at symbol an internal command
@@ -424,10 +443,7 @@
     %% Otherwise, do nothing, I guess.
   }
 
-%% Make a special command called defaultfont which sets sans or not.
-\newcommand{\defaultfont}{\ifthenelse{\boolean{sansflag}}{\sffamily}{}}
-
-%%%% FANCY CHAPTERS
+%% MAIN CHAPTER HEADINGS
 
 %% These are produced using the titlesec package.
 %% Note the use of this then else to switch the font style should
@@ -469,14 +485,7 @@
     {\Huge}%
   }
 
-%% Protect the section definitions from the rapport class as
-%% it does some weird alignment to them.
-\titleformat{\section}
-  {\normalfont\defaultfont\Large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}
-  {\normalfont\defaultfont\large\bfseries}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}
-  {\normalfont\defaultfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+%% FRONT MATTER CHAPTER HEADINGS
 
 %% Design some chapter headings for centred headings in the front matter like
 %% the dmathesis style thesis. These are applied to the front matter using
@@ -504,6 +513,16 @@
    \setcounter{secnumdepth}{2}%
   }
 
+%% SECTIONS
+
+%% Protect the section definitions from the rapport class as
+%% it does some weird alignment to them.
+\titleformat{\section}
+  {\normalfont\defaultfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\defaultfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\defaultfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
 
 
 %%%% SINGLE SPACING QUOTE ENVIRONMENTS
