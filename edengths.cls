@@ -181,6 +181,12 @@
 %%                                  \defaultfont is the main control of the sans
 %%                                  font option.
 %%
+%%   13/06/12                       Added the calc package to allow the use of +
+%%                                  when calculating the title parbox height.
+%%                                  Calc was missing but was called if the
+%%                                  mhchem package was loaded, so it hid the
+%%                                  bug.
+%%
 
 %% BEGIN CLASS FILE
 \NeedsTeXFormat{LaTeX2e}
