@@ -124,8 +124,12 @@
 %% Set the space between the main text and the start of the footnone
 \geometry{footnotesep=5mm}
 
-%% Set the space to the footer
-\geometry{footskip=20mm - 1em}
+%% Set the space to the footer. We need to define a new length before applying
+%% it in order to use the minus rubber length to aid flexibility.
+\newlength\myfootskip
+\setlength\myfootskip{20mm minus 1em}
+
+\geometry{footskip=\myfootskip}
 
 
 %%%% SET THE LINE SPACING.

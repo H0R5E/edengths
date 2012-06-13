@@ -597,7 +597,7 @@
       }%
     }%
     %% Get the height and if it's < 4cm set it to 4cm.
-    \setlength{\titleboxheight}{\ht\titlebox+\dp\titlebox}%
+    \setlength{\titleboxheight}{\ht\titlebox plus \dp\titlebox}%
     \ifthenelse{\lengthtest{ \titleboxheight < 4cm }}{
        \setlength{\titleboxheight}{4cm}}{}%
     \thispagestyle{empty}%
