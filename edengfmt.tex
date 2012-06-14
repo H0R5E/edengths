@@ -139,9 +139,10 @@
 %%%% SET THE LINE SPACING.
 
 %% Controlled by `setspace' package.
-%% Note: you can defined environments for different spacings during the 
-%% document. Quotes are automatically single spaced via this method.
-%% ie \begin{singlespace}blah blah\end{singlespace}
+%% Note: you can define environments for different spacings during the
+%% document, ie \begin{singlespace}blah blah\end{singlespace}.
+%%
+%% Quotes are automatically single spaced via this method.
 
 %% Pick one of these three options for global spacing.
 
@@ -158,7 +159,7 @@
 
 %% The university regs say ``hyphenation should be avoided if possible''.
 %% Latex looks rubbish with no hypenation but you can discourage it until
-%% you start to get looks of bad boxs. Try to set this number as high as
+%% you start to get lots of bad boxs. Try to set this number as high as
 %% possible (0-10000). You can also set a separate value for the
 %% bibliography using \bibhyphenpenalty.
 \hyphenpenalty=4000
@@ -180,14 +181,14 @@
 \setlength{\cfttabindent}{0pt}
 
 
-%% Custom skip before chapters in the TOC. This is useful is, say, the
+%% Custom skip before chapters in the TOC. This is useful if, say, the
 %% appendicies entry is alone at the foot of the page and you need to 
 %% add a little more length.
 
 % \addtolength{\cftbeforechapskip}{2pt}
 
 
-%% If you don't like capitalised titles in the forematter you can changed these
+%% If you don't like capitalised titles in the forematter you can change these
 %% here.
 
 % \renewcommand{\listfigurename}{List of figures}
@@ -210,7 +211,7 @@
 %%%% HYPERREF (for hyper package option).
 
 %% Provide options to hyperref. The boolean wrapper
-%% makes sure it won't mess up if hyper option is not used.
+%% makes sure it won't mess up if the hyper option is not used.
 \ifthenelse{\boolean{hyperflag}}{%
   \hypersetup{
       plainpages=false,
@@ -233,7 +234,7 @@
   }%
 
   %% \autoref or \Autoref is better to use rather than \ref 
-  %% as when using hyperref it links``title number'' rather 
+  %% as when using hyperref it links both the title and the number rather 
   %% than just the number.
 
   %% Create an all uppercase version of autoref, Autoref
@@ -274,7 +275,7 @@
 %% You can mess around with these if you like, but I wouldn't bother, really.
 %% DON'T CHANGE THE NAMES 'main' AND 'twomain'.
 
-%% Headers for the main body of the text, ie from contents onwards.
+%% Headers for the main body of the text, ie from the contents onwards.
 %% These headers are used when the document is single sided.
 %% If there is no chapter number then uppercase lettering is used.
 %% Format is {left}{center}{right}. \defaultfont sets the font to sans.
@@ -290,7 +291,7 @@
 
 %% If the twoside option is set, the even pages can have different styles.
 %% These are defined in the sqaure brackets [left][centre][right]{}{}{}
-%% The headers are now controlled by twomain pagstyle.
+%% The headers are now controlled by the twomain pagstyle.
 \newpagestyle{twomain}[\defaultfont\bfseries]{%
   \headrule%
   \sethead%
