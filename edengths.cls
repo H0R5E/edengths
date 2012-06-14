@@ -3,7 +3,7 @@
 %%
 %% Copyright (C) 1998 George Taylor
 %% Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
-%% Copyright (C) 2010 Mathew Topper <damm_horse@yahoo.co.uk>
+%% Copyright (C) 2012 Mathew Topper <damm_horse@yahoo.co.uk>
 %%
 %% This file is part of the University of Edinburgh, Department of
 %% Engineering LaTeX2e thesis template.
@@ -29,7 +29,7 @@
 %%
 %% This is the class file for a Latex2e template which corresponds to the
 %% regulations regarding layout of a thesis submitted within the University
-%% of Edinburgh school of Engineering. It is not `official', but conforms
+%% of Edinburgh School of Engineering. It is not `official', but conforms
 %% as best as possible to the regulation as detailed at:
 %%
 %% http://www.ed.ac.uk/schools-departments/science-engineering/current-students/
@@ -207,7 +207,7 @@
 %% DECLARE VARIABLES AND COMMANDS FOR CLASS
 
 %% Define a command to switch between report and rapport3 classes.
-%% 'rapport3' class natural does brutalist spacing, but the bibspacing needs
+%% 'rapport3' class does brutalist spacing, but the bibspacing needs
 %% manually controlled as it sets this to zero.
 \newcommand{\classfile}{report}
 
@@ -329,8 +329,6 @@
 
 %%%% LOAD MAIN PACKAGES
 
-%\RequirePackage{parksip}
-
 %% Putting some packages into the class.
 %% There could be a number of options to ``turn off'' the styleised
 %% parts and that the behavioural parts could be maintained in a separate file.
@@ -351,7 +349,7 @@
 
 %% Bibliography
 \RequirePackage{natbib}                         % Natbib with default options
-\RequirePackage{bibentry}                       % Allow it text references and
+\RequirePackage{bibentry}                       % Allow in text references and
                                                 % hiding of bibliograhy.
 
 %% FONTS 
@@ -383,10 +381,6 @@
 
 %% Allow modifications to the able of contents and lists
 \RequirePackage[titles,subfigure]{tocloft}%
-
-%% Allow stuff to be added to the table of contents but dissable it's own
-%% inclusion.
-% \RequirePackage[nottoc]{tocbibind}
 
 %% HYPERLINKS
 
@@ -455,9 +449,6 @@
 %% MAIN CHAPTER HEADINGS
 
 %% These are produced using the titlesec package.
-%% Note the use of this then else to switch the font style should
-%% the nosans flag be set. It doesn't seem to follow the default for
-%% some reason.
 
 %% Check for fancychap flag and change chapter default if true
 \ifthenelse{\boolean{fancychapflag}}{%
@@ -524,7 +515,7 @@
 
 %% SECTIONS
 
-%% Protect the section definitions from the rapport class as
+%% Protect the section definitions from the rapport3 class as
 %% it does some weird alignment to them.
 \titleformat{\section}
   {\normalfont\defaultfont\Large\bfseries}{\thesection}{1em}{}
@@ -560,7 +551,7 @@
 
 %% TITLE PAGE
 
-%% Define a command for the path the to list. Default is to
+%% Define a command for the path the to crest. Default is to
 %% stylefiles/EdUniCrest.pdf. Default will go to eps or to
 %% pdf dependant on pdf option.
 \ifthenelse{\boolean{pdf}}%
