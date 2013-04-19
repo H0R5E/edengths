@@ -3,7 +3,7 @@
 %%
 %% Copyright (C) 1998 George Taylor
 %% Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
-%% Copyright (C) 2012 Mathew Topper <damm_horse@yahoo.co.uk>
+%% Copyright (C) 2013 Mathew Topper <damm_horse@yahoo.co.uk>
 %%
 %% This file is part of the University of Edinburgh, Department of
 %% Engineering LaTeX2e thesis template.
@@ -186,6 +186,11 @@
 %%                                  Calc was missing but was called if the
 %%                                  mhchem package was loaded, so it hid the
 %%                                  bug.
+%%
+%%   19/04/13                       Added functionality for parts definitions.
+%%                                  This required dissabling calls to
+%%                                  MakeUppercase in the TOC when using
+%%                                  hyperref.
 %%
 
 %% BEGIN CLASS FILE
@@ -431,12 +436,14 @@
     \makeatother%
     %%
     %% Switch all list fonts to sans serif.
+    \renewcommand{\cftpartfont}{\bfseries\sffamily}
     \renewcommand{\cftchapfont}{\bfseries\sffamily}%
     \renewcommand{\cftsecfont}{\sffamily}%
     \renewcommand{\cftsubsecfont}{\sffamily}%
     \renewcommand{\cftfigfont}{\sffamily}%
     \renewcommand{\cfttabfont}{\sffamily}%
     %%
+    \renewcommand{\cftpartpagefont}{\bfseries\sffamily}%
     \renewcommand{\cftchappagefont}{\bfseries\sffamily}%
     \renewcommand{\cftsecpagefont}{\sffamily}%
     \renewcommand{\cftsubsecpagefont}{\sffamily}%
@@ -445,6 +452,37 @@
   {%
     %% Otherwise, do nothing, I guess.
   }
+  
+%% PARTS
+
+%% There is a particular issue with hyperef and the part definition which can be
+%% fixed as follows:
+\ifthenelse{\boolean{hyperflag}}{%
+  \AtBeginDocument{%
+    \pdfstringdefDisableCommands{%
+      \let\MakeUppercase\relax%
+    \typeout{Disabled uppercase in PDF strings}%
+    } 
+  }}{}
+
+%% Standardise the part definitions
+\titleformat{\part}[display]
+   {\Huge\defaultfont\filcenter}
+   {\MakeUppercase{\partname{} \thepart}}
+   {0em}
+   {}
+
+%% The following code is recommended, but doesn't work. See:
+%% http://tex.stackexchange.com/questions/6609/problems-with-part-labels-using-titlesec
+
+% \makeatletter
+% \let\titlesec@part\part
+% \renewcommand{\part}{\@ifstar\part@star\part@nostar}
+% \def\part@star#1{\NR@gettitle{#1}\titlesec@part*{#1}}
+% \def\part@nostar{\@ifnextchar[\part@nostar@opt\part@nostar@nopt}
+% \def\part@nostar@nopt#1{\NR@gettitle{#1}\titlesec@part{#1}}
+% \def\part@nostar@opt[#1]#2{\NR@gettitle{#2}\titlesec@part[#1]{#2}}
+% \makeatother
 
 %% MAIN CHAPTER HEADINGS
 
