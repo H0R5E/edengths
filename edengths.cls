@@ -69,8 +69,8 @@
 %%                                  Modified the titlepage and added an
 %%                                  option to include a crest.
 %%
-%%   21/06/10			    Had to fix interaction between reset
-%%				    of parskip and the non-starred title.
+%%   21/06/10                       Had to fix interaction between reset
+%%                                  of parskip and the non-starred title.
 %%
 %%   22/06/10                       Removed pdf option in favour of
 %%                                  ifpdf package.
@@ -92,16 +92,16 @@
 %%                                  be included in a file. The new file is
 %%                                  called appedix/edengapp.tex
 %%
-%%   24/06/10			    Took cleardoublepage out of the 
-%%				    declaration and put into the makefrontmatter
-%%				    command.
+%%   24/06/10                       Took cleardoublepage out of the 
+%%                                  declaration and put into the makefrontmatter
+%%                                  command.
 %%
-%%				    Added boolean twosideflag to check if
-%%				    twoside is set. If it is set then use
-%%				    pagestyle 'twomain' which can
-%%				    set different headers (for even
-%%				    pages) at the end of makefrontmatter
-%%				    wrapper instead of main.
+%%                                  Added boolean twosideflag to check if
+%%                                  twoside is set. If it is set then use
+%%                                  pagestyle 'twomain' which can
+%%                                  set different headers (for even
+%%                                  pages) at the end of makefrontmatter
+%%                                  wrapper instead of main.
 %%
 %%   25/06/10                       Fixed parskip issue by switching to
 %%                                  rapport3 class when nopardent is set.
@@ -117,23 +117,23 @@
 %%                                  Improved title and section for possible
 %%                                  12pt doublespace use.
 %%
-%%   03/07/10			    Changed listoffiguresandtables to have
-%%				    the addcontentsline command after the
-%%				    chapter. Also changed the headings to
-%%				    section* commands for Figures and Tables.
+%%   03/07/10                       Changed listoffiguresandtables to have
+%%                                  the addcontentsline command after the
+%%                                  chapter. Also changed the headings to
+%%                                  section* commands for Figures and Tables.
 %%
-%%				    Removed tocbibind package in favour of
-%%				    custom toc entries using addtocontentsline
-%%				    This allows correct anchors when using
-%%				    hyperref.
+%%                                  Removed tocbibind package in favour of
+%%                                  custom toc entries using addtocontentsline
+%%                                  This allows correct anchors when using
+%%                                  hyperref.
 %%
 %%   13/10/10                       Loading the packages.tex file here now
 %%                                  so that showlabels can be executed last
 %%                                  (after hyperref for instance).
 %%
-%%   17/10/10			    Added bibhyphenpenalty which is used to 
-%%				    set hyphenpenalty just before the
-%%				    bibliography is called.
+%%   17/10/10                       Added bibhyphenpenalty which is used to 
+%%                                  set hyphenpenalty just before the
+%%                                  bibliography is called.
 %%
 %%   19/10/10                       Removed redefinition of bibliography in
 %%                                  place of edbibliography. This command
@@ -228,29 +228,29 @@
                \DeclareOption{#1}{\PassOptionsToClass{#1}{\classfile}}}
 
 %% Make some booleans for special package options
-\newboolean{sansflag}                  % Default is for sans serif fonts for 
-\setboolean{sansflag}{true}            % captions and headers
+\newboolean{sansflag}                   % Default is for sans serif fonts for 
+\setboolean{sansflag}{true}             % captions and headers
 
-\newboolean{msfontsflag}	       % Use MS fonts
+\newboolean{msfontsflag}                % Use MS fonts
 \setboolean{msfontsflag}{false}
 
-\newboolean{fancychapflag}	       % Use fancy chapter headerings
+\newboolean{fancychapflag}              % Use fancy chapter headerings
 \setboolean{fancychapflag}{false}
 
-\newboolean{crestflag}                 % Put a crest on the frontpage
+\newboolean{crestflag}                  % Put a crest on the frontpage
 \setboolean{crestflag}{false}
 
-\newboolean{labelflag}                 % Print labels on the page
+\newboolean{labelflag}                  % Print labels on the page
 \setboolean{labelflag}{false}
 
-\newboolean{twosideflag}	       % Is the twoside option set?
+\newboolean{twosideflag}                % Is the twoside option set?
 \setboolean{twosideflag}{false}
 
-\newboolean{bibflag}	               % Should the bibliography be printed
+\newboolean{bibflag}                    % Should the bibliography be printed
 \setboolean{bibflag}{true}
 
 \newboolean{hyperflag}
-\setboolean{hyperflag}{false}          % Use hyperref package?
+\setboolean{hyperflag}{false}           % Use hyperref package?
 
 
 %%%% DECLARE OPTIONS
@@ -285,7 +285,7 @@
 \DeclareOption{hyper}{\setboolean{hyperflag}{true}}
 
 %% Must have options.
-\OnOption{a4paper}	
+\OnOption{a4paper}
 \OnOption{openright}     % Start chapters on righthand side pages
 \OnOption{titlepage}     % Title should be on it's own page.
 
@@ -363,8 +363,8 @@
 \RequirePackage[T1]{fontenc}                    % T1 encoding stops some errors
                                                 % for unknown fonts
 
-\ifthenelse{\boolean{msfontsflag}}{%		% Use MS fonts if the option is
-  \RequirePackage{mathptmx}%			% given
+\ifthenelse{\boolean{msfontsflag}}{%            % Use MS fonts if the option is
+  \RequirePackage{mathptmx}%                    % given
   \RequirePackage[scaled=.92]{helvet}%
   }{%
   }
@@ -923,8 +923,8 @@
 \AtEndOfClass{%
 \InputIfFileExists{edengfmt.tex}{\typeout{Succesful input of formatting file.}}%
                                 {\ClassError{edengths}{%
-				 Formatting file not found!%
+                                 Formatting file not found!%
                                 }{%
                                  Oh dear! Something's gone wrong. \MessageBreak%
-				 Where is edengfmt.tex? I need it!}}%
+                                 Where is edengfmt.tex? I need it!}}%
 }
