@@ -329,6 +329,22 @@
 %% Load report class with default setup
 \LoadClass[a4paper,openright,titlepage]{\classfile}
 
+%% COLORS FIRST
+
+%% xcolor should be loaded prior to the user inputted packages or stuff like
+%% pstricks will not work apparently. xcolor gives better color match for
+%% hyperlinks.
+\ifthenelse{\boolean{pdf}}{%
+    \newcommand{\colordriver}{pdftex}
+    }{%
+    \newcommand{\colordriver}{xdvi, dvipdfmx}
+    }
+\ifthenelse{\boolean{hyperflag}}{%
+    \RequirePackage[\colordriver, dvipsnames, hyperref]{xcolor}%
+   }{
+    \RequirePackage[\colordriver, dvipsnames]{xcolor}%
+   }
+
 %%%% INPUT THE USER DEFINED PACKAGES (Loading here allows options to be passed
 %%%%                                  to the auto loaded packages)
 
@@ -390,25 +406,20 @@
 %% Allow modifications to the able of contents and lists
 \RequirePackage[titles,subfigure]{tocloft}%
 
-%% HYPERLINKS AND COLORS
+%% HYPERLINKS
 
 %% Load the hyperref package if the option is set. Set to the correct driver
 %% dependant on the ifpdf package. Also load hypcap for better linking to 
-%% figures. Use xcolor to get good color reproduction in pdfs.
+%% figures.
 \ifthenelse{\boolean{pdf}}{%
-            \newcommand{\hyperdriver}{pdftex}
-            \newcommand{\colordriver}{pdftex}
-            }{%
-            \newcommand{\hyperdriver}{dvipdfm}
-            \newcommand{\colordriver}{xdvi, dvipdfmx}
-            }
+    \newcommand{\hyperdriver}{pdftex}
+    }{%
+    \newcommand{\hyperdriver}{dvipdfm}
+    }
 \ifthenelse{\boolean{hyperflag}}{%
-    \RequirePackage[\colordriver, dvipsnames, hyperref]{xcolor}%
     \AtEndOfClass{\RequirePackage[\hyperdriver]{hyperref}}%
     \AtEndOfClass{\RequirePackage[all]{hypcap}}%
-   }{
-    \RequirePackage[\colordriver, dvipsnames]{xcolor}
-   }
+   }{}
 
 %% LABELS
 
