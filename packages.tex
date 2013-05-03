@@ -58,6 +58,9 @@
 %%     Date      Programmer         Description of change
 %%     ====      ==========         =====================
 %%   13/10/11    Mathew Topper      Added \PassOptionsToPackage example.
+%%
+%%   03/05/13                       Made xcolor package preloaded.
+%%
 
 %%%% PACKAGES AUTOMATTICALLY PROVIDED BY CLASS 
 %%%%  (No need to reload.  Options can be provided to these packages using the
@@ -102,13 +105,13 @@
 %% hypcap     -   Links to figures show the figures rather than just the
 %%                caption.
 
+%% xcolor     -   Loaded with option 'dvipsnames' with provides colors for pdf
+%%                output. The options auto adjust for pdflatex and hyperref.
+%%                See http://en.wikibooks.org/wiki/LaTeX/Colors for colours.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%          Put ADDITIONAL packages you want to use here           %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Allow coloured text. Particularly useful if using 'hyperref'.
-%% Check out http://en.wikibooks.org/wiki/LaTeX/Colors for colours.
-\usepackage[usenames,dvipsnames]{color}
 
 %% Typset URLs properly. This package does automatic breaking of long URLs.
 %% If you're using hyperref you dont need this but you might need the
