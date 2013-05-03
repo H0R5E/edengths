@@ -192,6 +192,9 @@
 %%                                  MakeUppercase in the TOC when using
 %%                                  hyperref.
 %%
+%%   03/05/13                       Preloading xcolor package using correct
+%%                                  options for pdfdriver and hyperref.
+%%
 
 %% BEGIN CLASS FILE
 \NeedsTeXFormat{LaTeX2e}
@@ -387,18 +390,25 @@
 %% Allow modifications to the able of contents and lists
 \RequirePackage[titles,subfigure]{tocloft}%
 
-%% HYPERLINKS
+%% HYPERLINKS AND COLORS
 
 %% Load the hyperref package if the option is set. Set to the correct driver
 %% dependant on the ifpdf package. Also load hypcap for better linking to 
-%% figures.
-\ifthenelse{\boolean{pdf}}%
-          {\newcommand{\hyperdriver}{pdftex}}%
-          {\newcommand{\hyperdriver}{dvipdfm}}
+%% figures. Use xcolor to get good color reproduction in pdfs.
+\ifthenelse{\boolean{pdf}}{%
+            \newcommand{\hyperdriver}{pdftex}
+            \newcommand{\colordriver}{pdftex}
+            }{%
+            \newcommand{\hyperdriver}{dvipdfm}
+            \newcommand{\colordriver}{xdvi, dvipdfmx}
+            }
 \ifthenelse{\boolean{hyperflag}}{%
-   \AtEndOfClass{\RequirePackage[\hyperdriver]{hyperref}}%
-   \AtEndOfClass{\RequirePackage[all]{hypcap}}%
-}{}
+    \RequirePackage[\colordriver, dvipsnames, hyperref]{xcolor}%
+    \AtEndOfClass{\RequirePackage[\hyperdriver]{hyperref}}%
+    \AtEndOfClass{\RequirePackage[all]{hypcap}}%
+   }{
+    \RequirePackage[\colordriver, dvipsnames]{xcolor}
+   }
 
 %% LABELS
 

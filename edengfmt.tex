@@ -98,6 +98,11 @@
 %%   13/06/12                       Added \myfootskip to allow proper setting of
 %%                                  rubber length using the minus command rather
 %%                                  than the calc package symbol.
+%%
+%%   03/05/13                       Changed to xcolor package to use 'black'
+%%                                  rather than 'Black', which gives a better
+%%                                  color match.
+%%
 
 
 %% IN THIS FILE YOU CAN:
@@ -220,17 +225,17 @@
                 a Phd Thesis About Clever Engineering Stuff at
                 The University of Edinburgh},
       pdfauthor={Robert Boberson},
-      pdfsubject={Latex Stuff},   % subject of the document
+      pdfsubject={Latex Stuff},             % subject of the document
       pdfkeywords={Latex, Thesis Template}, % list of keywords
       colorlinks=true,
-      linkcolor=BrickRed,        % color of internal links
-      citecolor=Blue,        % color of links to bibliography
-      filecolor=Black,        % color of file links
-      urlcolor=Violet          % color of external links
-%       linkcolor=Black,        % Boring colors
-%       citecolor=Black,
-%       filecolor=Black,
-%       urlcolor=Black 
+%       linkcolor=BrickRed,                   % color of internal links
+%       citecolor=Blue,                       % color of links to bibliography
+%       filecolor=black,                      % color of file links
+%       urlcolor=Violet                       % color of external links
+      linkcolor=black,                      % Boring colors. Note, 'black' is
+      citecolor=black,                      % blacker than 'Black'.
+      filecolor=black,
+      urlcolor=black
   }%
 
   %% \autoref or \Autoref is better to use rather than \ref 
