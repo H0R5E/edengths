@@ -85,12 +85,17 @@
 %%                                  a custom qualification on the front
 %%                                  page.
 %%
+%%                                  Added 'nomencl' option to use the
+%%                                  nomencl package to build a nomenclature.
+%%                                  You need to run ./makenomencl.sh to build
+%%                                  the nomenclature in linux
+%%
 %%   19/04/13                       Added some commented ``part'' definitions
 %%
 
 %%%% LOAD DOCUMENT CLASS
 
-\documentclass[11pt,crest,nopardent,msfonts,fancychap,hyper]{edengths}
+\documentclass[11pt,crest,nopardent,msfonts,fancychap,hyper,nomencl]{edengths}
 
 %% Class options go in the square brackets above
 %% i.e. \documentclass[options]{edengths}
@@ -131,6 +136,9 @@
 %%             the document. Use \autoref{fig:example} now instead of,
 %%             say, figure~\ref{fig:example}. Settings are in
 %%             edengfmt.tex.
+%% nomencl   - Use the nomencl package. Example of it's usage are in
+%%             front/nomencl.tex. The Nomenclature is called from
+%%             front/frontmatr.tex
 
 %% ADDITIONAL FORMATTING can be done in 'edengfmt.tex' where the page
 %% dimensions, header/footers, table of contents and the names of 
@@ -210,6 +218,11 @@ a Phd Thesis About Clever Engineering Stuff at The University of Edinburgh}
 
 %% Call the edengths wrapper.
 \startbody
+
+%% Input the nomencl example if package is loaded.
+\ifthenelse{\boolean{nomenclflag}}{
+  \input{front/nomencl}
+}{}
 
 %% The template will work with part definitions (starred or otherwise), but note
 %% that nameref and autoref may not work properly for referencing them.
