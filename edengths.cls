@@ -163,6 +163,11 @@
 %%                                  entrys. Starred version has no TOC
 %%                                  entry.
 %%
+%%                                  Added nomencl option for running the
+%%                                  nomencl package with the template.
+%%                                  It redefines the way that the title is
+%%                                  produced.
+%%
 %%   13/10/11                       Removed 11pt option from class file load
 %%                                  as it overided the 10pt option if it was
 %%                                  used.
@@ -255,6 +260,9 @@
 \newboolean{hyperflag}
 \setboolean{hyperflag}{false}           % Use hyperref package?
 
+\newboolean{nomenclflag}
+\setboolean{nomenclflag}{false}        % Use nomencl package?
+
 
 %%%% DECLARE OPTIONS
 
@@ -286,6 +294,9 @@
 
 %% Use hyperref
 \DeclareOption{hyper}{\setboolean{hyperflag}{true}}
+
+%% Use nomencl
+\DeclareOption{nomencl}{\setboolean{nomenclflag}{true}}
 
 %% Must have options.
 \OnOption{a4paper}
@@ -405,6 +416,17 @@
 
 %% Allow modifications to the able of contents and lists
 \RequirePackage[titles,subfigure]{tocloft}%
+
+%% NOMENCLATURE
+
+%% Load the nomencl package. More work done on it lower down.
+\ifthenelse{\boolean{nomenclflag}}{%
+   \RequirePackage{nomencl}%
+   \makenomenclature%
+}{%
+  % If nomencl is not loaded redefine printglossary to avoid errors.
+  \def\printnomenclature{}%
+}
 
 %% HYPERLINKS
 
@@ -854,6 +876,27 @@
      {\@starttoc{lot}}%
     \if@restonecol\twocolumn\fi%%
     }
+
+%% Make at safe again.
+\makeatother
+
+%% FIX THE NOMENCLATURE TITLE IF THE PACKAGE IS BEING USED.
+
+%% Allow internal use of @ symbol
+\makeatletter
+
+\ifthenelse{\boolean{nomenclflag}}{%
+  %% Redefine \theglossary command
+  \renewcommand{\thenomenclature}{%
+    \frontchapter{\nomname}%
+    \nompreamble
+    \list{}{%
+      \labelwidth\nom@tempdim
+      \leftmargin\labelwidth
+      \advance\leftmargin\labelsep
+      \itemsep\nomitemsep
+      \let\makelabel\nomlabel}}%
+}{}
 
 %% Make at safe again.
 \makeatother

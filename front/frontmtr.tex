@@ -64,6 +64,9 @@
 %%   04/04/11                      Added some info about
 %%                                 \frontchapter command.
 %%
+%%                                 Added \printglossary command
+%%                                 to output nomenclature.
+%%
 %%
 
 %% The special formatting in the class requires the use of
@@ -86,6 +89,10 @@
 
 %% List of figures and tables
 \listoffiguresandtables
+
+%% Make the nomenclature. This command won't do anything if nomencl option
+%% is not declared.
+\printnomenclature
 
 %% Custom front matter chapters can be added using \input{frontchapter.tex}
 %% For the correct title behaviour use the \frontchapter{title} command instead
