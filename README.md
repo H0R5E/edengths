@@ -7,8 +7,7 @@ regulations regarding layout of a thesis submitted within the University
 of Edinburgh School of Engineering. It is not `official', but conforms
 as best as possible to the regulation as detailed at:
 
-http://www.ed.ac.uk/schools-departments/science-engineering/current-students/
-research/submitting-thesis
+[The University of Edinburgh Academic Services](http://www.ed.ac.uk/academic-services/students/postgraduate-research/thesis-submission)
 
 Please feel free to alter the template to your own liking, but note that
 the template is made available under the GNU GPL and must be similarly
