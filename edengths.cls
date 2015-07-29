@@ -11,6 +11,7 @@
 %% This is the class file for a Latex2e template which corresponds to the
 %% regulations regarding layout of a thesis submitted within the University
 %% of Edinburgh School of Engineering.
+%%
 
 %% BEGIN CLASS FILE
 \NeedsTeXFormat{LaTeX2e}
@@ -71,6 +72,9 @@
 \newboolean{hyperflag}
 \setboolean{hyperflag}{false}           % Use hyperref package?
 
+\newboolean{nomenclflag}
+\setboolean{nomenclflag}{false}        % Use nomencl package?
+
 
 %%%% DECLARE OPTIONS
 
@@ -102,6 +106,9 @@
 
 %% Use hyperref
 \DeclareOption{hyper}{\setboolean{hyperflag}{true}}
+
+%% Use nomencl
+\DeclareOption{nomencl}{\setboolean{nomenclflag}{true}}
 
 %% Must have options.
 \OnOption{a4paper}
@@ -221,6 +228,17 @@
 
 %% Allow modifications to the able of contents and lists
 \RequirePackage[titles,subfigure]{tocloft}%
+
+%% NOMENCLATURE
+
+%% Load the nomencl package. More work done on it lower down.
+\ifthenelse{\boolean{nomenclflag}}{%
+   \RequirePackage{nomencl}%
+   \makenomenclature%
+}{%
+  % If nomencl is not loaded redefine printglossary to avoid errors.
+  \def\printnomenclature{}%
+}
 
 %% HYPERLINKS
 
@@ -664,6 +682,27 @@
      {\@starttoc{lot}}%
     \if@restonecol\twocolumn\fi%%
     }
+
+%% Make at safe again.
+\makeatother
+
+%% FIX THE NOMENCLATURE TITLE IF THE PACKAGE IS BEING USED.
+
+%% Allow internal use of @ symbol
+\makeatletter
+
+\ifthenelse{\boolean{nomenclflag}}{%
+  %% Redefine \theglossary command
+  \renewcommand{\thenomenclature}{%
+    \frontchapter{\nomname}%
+    \nompreamble
+    \list{}{%
+      \labelwidth\nom@tempdim
+      \leftmargin\labelwidth
+      \advance\leftmargin\labelsep
+      \itemsep\nomitemsep
+      \let\makelabel\nomlabel}}%
+}{}
 
 %% Make at safe again.
 \makeatother
