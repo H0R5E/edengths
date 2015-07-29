@@ -469,6 +469,12 @@
 
 \newcommand{\qualification}[1]{%
     \renewcommand{\qualidefault}{#1}}
+    
+%% Add a command for defining the name of the institution
+\newcommand{\unidefault}{\textsc{The University of Edinburgh}}%
+
+\newcommand{\university}[1]{%
+    \renewcommand{\unidefault}{#1}}
 
 %% Make a box and a height to record the height of the title
 \newsavebox{\titlebox}
@@ -535,7 +541,7 @@
         \end{onehalfspace}%
       }\\%
       %% University
-      [4mm] {\textsc{The University of Edinburgh}} \\%
+      [4mm] {\unidefault} \\%
       %% Date
       [10mm]\@date
       }}%
