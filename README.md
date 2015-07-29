@@ -4,7 +4,7 @@
 
 This is the class file for a Latex2e template which corresponds to the
 regulations regarding layout of a thesis submitted within the University
-of Edinburgh School of Engineering. It is not `official', but conforms
+of Edinburgh School of Engineering. It is **not official**, but conforms
 as best as possible to the regulation as detailed at:
 
 [The University of Edinburgh Academic Services](http://www.ed.ac.uk/academic-services/students/postgraduate-research/thesis-submission)
@@ -40,7 +40,9 @@ Edinburgh Engineering PhD community once released.
 ## LICENSE
 
 Copyright (C) 1998 George Taylor
+
 Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
+
 Copyright (C) 2013 Mathew Topper <damm_horse@yahoo.co.uk>
 
 The University of Edinburgh, Department of Engineering LaTeX2e thesis
