@@ -1,4 +1,4 @@
-# edengths.cls - LaTeX2e Thesis Class
+# edengths.cls - LaTeX2e Thesis Class (Nomenclature Version)
 
 ## ABOUT
 
