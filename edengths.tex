@@ -135,15 +135,15 @@ a Phd Thesis About Clever Stuff at The University of Edinburgh}
 
 \include{front/frontmtr}
 
+%% Input the nomencl example if package is loaded.
+\ifthenelse{\boolean{nomenclflag}}{
+	\input{front/nomencl}
+}{}
+
 %%%% START MAIN BODY TEXT
 
 %% Call the edengths wrapper.
 \startbody
-
-%% Input the nomencl example if package is loaded.
-\ifthenelse{\boolean{nomenclflag}}{
-  \input{front/nomencl}
-}{}
 
 %% The template will work with part definitions (starred or otherwise), but note
 %% that nameref and autoref may not work properly for referencing them.
