@@ -43,7 +43,7 @@ Copyright (C) 1998 George Taylor
 
 Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
 
-Copyright (C) 2015 Mathew Topper <damm_horse@yahoo.co.uk>
+Copyright (C) 2015-2017 Mathew Topper <dataonlygreater@gmail.com>
 
 The University of Edinburgh, Department of Engineering LaTeX2e thesis
 template is free software: you can redistribute it and/or modify
