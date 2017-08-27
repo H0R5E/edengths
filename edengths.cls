@@ -568,6 +568,13 @@
   #1%
 }
 
+%% LAY SUMMARY
+
+\newcommand{\summary}[1]{%
+  \chapter{Lay Summary}%
+  #1%
+}
+
 %% ACKNOWLEDGEMENTS
 
 \newcommand{\acknowledgements}[1]{%
