@@ -1,7 +1,7 @@
 %% File: `edengnat.bst'
 %% 
-%% A modification of `plainnat.bst' for edengths class by:
-%% Mathew Topper (damm_horse@yahoo.co.uk) - 2010
+%% A modification of `plainnat.bst' for edengths class.
+%% Copyright (C) 2010-2017 Mathew Topper <damm_horse@yahoo.co.uk>
 %%  
 %% A modification of `plain.bst' for use with natbib package 
 %%
