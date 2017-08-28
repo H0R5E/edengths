@@ -2,7 +2,7 @@
 
 ## ABOUT
 
-This is the class file for a Latex2e template which corresponds to the
+This is a Latex2e template which corresponds to the
 regulations regarding layout of a thesis submitted within the University
 of Edinburgh. It is **not official**, but conforms as best as possible to the
 regulation as detailed at:
@@ -60,5 +60,5 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with the University of Edinburgh, Department of Engineering
-LaTeX2e thesis template.  If not, see <http://www.gnu.org/licenses/>.
+along with The Unofficial University of Edinburgh LaTeX2e thesis template.
+If not, see <http://www.gnu.org/licenses/>.
