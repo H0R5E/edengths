@@ -3,14 +3,14 @@
 %%
 %% Copyright (C) 1998 George Taylor
 %% Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
-%% Copyright (C) 2013 Mathew Topper <damm_horse@yahoo.co.uk>
+%% Copyright (C) 2010-2017 Mathew Topper <damm_horse@yahoo.co.uk>
 %%
 %%
 %%   ABOUT
 %%
 %% This is the class file for a Latex2e template which corresponds to the
 %% regulations regarding layout of a thesis submitted within the University
-%% of Edinburgh School of Engineering.
+%% of Edinburgh.
 
 %% BEGIN CLASS FILE
 \NeedsTeXFormat{LaTeX2e}
