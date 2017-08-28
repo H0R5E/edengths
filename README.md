@@ -1,11 +1,11 @@
-# edengths.cls - LaTeX2e Thesis Class
+# edengths - LaTeX2e PhD Thesis Template
 
 ## ABOUT
 
 This is the class file for a Latex2e template which corresponds to the
 regulations regarding layout of a thesis submitted within the University
-of Edinburgh School of Engineering. It is **not official**, but conforms
-as best as possible to the regulation as detailed at:
+of Edinburgh. It is **not official**, but conforms as best as possible to the
+regulation as detailed at:
 
 [The University of Edinburgh Academic Services](http://www.ed.ac.uk/academic-services/students/thesis-submission)
 
@@ -32,10 +32,12 @@ Code is included from the dmathesis class Written by M. Imran
 for a thesis according to the university of Durham regulation, which was
 released without copyright. It also contains ideas (possibly code) from the
 Princeton thesis class file (PrincetonThesis.cls), authored by Mike Nolta.
-Mathew Topper, Eoghan Maguire and Bill Edwards foresaw the need to maintain a
-more recent latex implementation of the thesis regulations and thus, this
-project was born. It is hoped that the template will be maintained by the
-Edinburgh Engineering PhD community once released.
+
+Mathew Topper, Eoghan Maguire and Bill Edwards, of the Institute of Energy
+Systems in the University of Edinburgh, foresaw the need to maintain a
+more recent latex implementation of the university thesis regulations and thus,
+this project was born. It is hoped that the template will be maintained by the
+University of Edinburgh PhD community once released.
 
 ## LICENSE
 
@@ -45,14 +47,14 @@ Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
 
 Copyright (C) 2010-2017 Mathew Topper <dataonlygreater@gmail.com>
 
-The University of Edinburgh, Department of Engineering LaTeX2e thesis
-template is free software: you can redistribute it and/or modify
+The Unofficial University of Edinburgh LaTeX2e Thesis
+Template is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-The University of Edinburgh, Department of Engineering LaTeX2e thesis
-template is distributed in the hope that it will be useful,
+The Unofficial University of Edinburgh LaTeX2e Thesis
+Template is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
