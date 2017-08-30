@@ -135,11 +135,6 @@ a Phd Thesis About Clever Stuff at The University of Edinburgh}
 
 \include{front/frontmtr}
 
-%% Input the nomencl example if package is loaded.
-\ifthenelse{\boolean{nomenclflag}}{
-	\input{front/nomencl}
-}{}
-
 %%%% START MAIN BODY TEXT
 
 %% Call the edengths wrapper.
@@ -154,7 +149,7 @@ a Phd Thesis About Clever Stuff at The University of Edinburgh}
 % \part{The Two Flowers}
 
 \include{chapter2/chapter2}
-% \include{chapter3/chapter3}
+\include{chapter3/chapter3}
 % \include{chapter4/chapter4}
 % \include{chapter5/chapter5}
 % \include{chapter6/chapter6}
