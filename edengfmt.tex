@@ -191,11 +191,16 @@
 \newpagestyle{main}[\defaultfont\bfseries]{%
   \headrule%
   \sethead%
-   {\ifthesection{\thesection{.} \space}{\ifthechapter{\thechapter{.}%
-    \space}{}}\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{%
-    \MakeUppercase{\chaptertitle}}}}%
-   {}{\thepage}%
-  \setfoot{}{}{}%
+      {\ifthesection{\toptitlemarks\thesection{.} \space}%
+          {\ifthechapter{\thechapter{.} \space}{}}%
+       \ifthesection{\toptitlemarks\sectiontitle}%
+          {\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}}}%
+      {}%
+      {\thepage}%
+  \setfoot%
+      {}%
+      {}%
+      {}%
   }
 
 %% If the twoside option is set, the even pages can have different styles.
@@ -204,13 +209,22 @@
 \newpagestyle{twomain}[\defaultfont\bfseries]{%
   \headrule%
   \sethead%
-    [\thepage]%
-    [][\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}]%
-    {\ifthesection{\thesection{.} \space}{\ifthechapter{\thechapter{.}%
-    \space}{}}\ifthesection{\sectiontitle}{\ifthechapter{\chaptertitle}{%
-    \MakeUppercase{\chaptertitle}}}}%
-    {}{\thepage}%
-  \setfoot[][][]{}{}{}%
+      [\thepage]%
+      []%
+      [\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}]%
+      {\ifthesection{\toptitlemarks\thesection{.} \space}%
+          {\ifthechapter{\thechapter{.}\space}{}}%
+       \ifthesection{\toptitlemarks\sectiontitle}%
+          {\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}}}%
+      {}
+      {\thepage}%
+  \setfoot%
+      []%
+      []%
+      []%
+      {}%
+      {}%
+      {}%
   }
 
 %% Redefine the plain page style to use the defaultfont for the
