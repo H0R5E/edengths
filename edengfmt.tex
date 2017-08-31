@@ -191,8 +191,8 @@
 \newpagestyle{main}[\defaultfont\bfseries]{%
   \headrule%
   \sethead%
-      {\ifthesection{\toptitlemarks\thesection{.} \space}%
-          {\ifthechapter{\thechapter{.} \space}{}}%
+      {\ifthesection{\toptitlemarks\thesection{.}\space}%
+          {\ifthechapter{\thechapter{.}\space}{}}%
        \ifthesection{\toptitlemarks\sectiontitle}%
           {\ifthechapter{\chaptertitle}{}}}%
       {}%
@@ -212,11 +212,11 @@
       [\thepage]%
       []%
       [\ifthechapter{\chaptertitle}{}]%
-      {\ifthesection{\toptitlemarks\thesection{.} \space}%
-          {\ifthechapter{\thechapter{.} \space}{}}%
+      {\ifthesection{\toptitlemarks\thesection{.}\space}%
+          {\ifthechapter{\thechapter{.}\space}{}}%
        \ifthesection{\toptitlemarks\sectiontitle}%
           {\ifthechapter{\chaptertitle}{}}}%
-      {}
+      {}%
       {\thepage}%
   \setfoot%
       []%
@@ -230,9 +230,15 @@
 %% Redefine the plain page style to use the defaultfont for the
 %% numbering.
 \renewpagestyle{plain}[\defaultfont]{%
-  \sethead{}{}{}%
-  \setfoot{}{\thepage}{}%
-}
+  \sethead%
+      {}%
+      {}%
+      {}%
+  \setfoot%
+      {}%
+      {\thepage}%
+      {}%
+  }
 
 %%%% FIX VBOX ERROR WITH 'twoside' OPTION
 
