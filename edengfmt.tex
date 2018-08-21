@@ -194,7 +194,7 @@
       {\ifthesection{\toptitlemarks\thesection{.}\space}%
           {\ifthechapter{\thechapter{.}\space}{}}%
        \ifthesection{\toptitlemarks\sectiontitle}%
-          {\ifthechapter{\chaptertitle}{}}}%
+          {\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}}}%
       {}%
       {\thepage}%
   \setfoot%
@@ -211,11 +211,11 @@
   \sethead%
       [\thepage]%
       []%
-      [\ifthechapter{\chaptertitle}{}]%
+      [\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}]%
       {\ifthesection{\toptitlemarks\thesection{.}\space}%
           {\ifthechapter{\thechapter{.}\space}{}}%
        \ifthesection{\toptitlemarks\sectiontitle}%
-          {\ifthechapter{\chaptertitle}{}}}%
+          {\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}}}%
       {}%
       {\thepage}%
   \setfoot%
