@@ -1,3 +1,5 @@
+![edengths master](https://github.com/H0R5E/edengths/workflows/edengths%20master/badge.svg)
+
 # edengths - LaTeX PhD Thesis Template
 
 ## ABOUT
