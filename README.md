@@ -1,4 +1,5 @@
 ![edengths master](https://github.com/H0R5E/edengths/workflows/edengths%20master/badge.svg)
+![edengths nomencl](https://github.com/H0R5E/edengths/workflows/edengths%20nomencl/badge.svg)
 
 # edengths - LaTeX PhD Thesis Template
 
