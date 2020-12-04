@@ -25,7 +25,7 @@ jobs:
             ./makenomencl.sh
           post_compile: |
             mkdir build
-            mv edengths_nomencl.pdf build
+            mv edengths.pdf build
       - name: Commit PDF to gh-pages
         run: |
           git config --local user.email "action@github.com"
