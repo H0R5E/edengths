@@ -16,8 +16,14 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: edengths.tex
-      - name: Upload PDF
-        uses: actions/upload-artifact@v2
-        with:
-          name: PDF
-          path: edengths.pdf
+      - name: Commit PDF to gh-pages
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git checkout --track origin/gh-pages
+        git commit -m "Add PDF" -a
+    - name: Push changes to gh-pages
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ gh-pages }}
