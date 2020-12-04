@@ -21,6 +21,7 @@ jobs:
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
           pre_compile: |
             pdflatex edengths
+            chmod 777 makenomencl.sh
             ./makenomencl.sh
           post_compile: |
             mkdir build
