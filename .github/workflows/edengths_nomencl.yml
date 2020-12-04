@@ -29,7 +29,7 @@ jobs:
           git fetch --all
           git stash push --include-untracked -- ./edengths_nomencl.pdf
           git checkout --track origin/gh-pages
-          git stash pop
+          git checkout stash -- .
           git add ./edengths_nomencl.pdf
           git commit -m "Update PDF" 
       - name: Push changes to gh-pages
