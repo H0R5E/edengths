@@ -22,8 +22,8 @@ jobs:
           git config --local user.name "GitHub Action"
           git fetch --all
           git checkout --track origin/gh-pages
-          ls
-          git commit -m "Add PDF" edengths.pdf
+          git add ./edengths.pdf
+          git commit -m "Update PDF" 
       - name: Push changes to gh-pages
         uses: ad-m/github-push-action@master
         with:
