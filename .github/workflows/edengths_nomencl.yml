@@ -24,7 +24,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
-          ls
           git checkout --track origin/gh-pages
           git add ./edengths_nomencl.pdf
           git commit -m "Update PDF" 
