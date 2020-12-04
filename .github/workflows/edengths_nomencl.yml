@@ -18,7 +18,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: edengths.tex
-          args: "-jobname=edengths_nomencl"
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -jobname=edengths_nomencl"
       - name: Commit PDF to gh-pages
         run: |
           git config --local user.email "action@github.com"
