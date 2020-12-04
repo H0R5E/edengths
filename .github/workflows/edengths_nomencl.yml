@@ -19,12 +19,17 @@ jobs:
         with:
           root_file: edengths.tex
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -jobname=edengths_nomencl"
+        pre_compile: |
+          latex -pdf -file-line-error -halt-on-error -interaction=nonstopmode -jobname=edengths_nomencl edengths
+          ./makenomencl.sh
       - name: Commit PDF to gh-pages
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
+          git stash push --include-untracked -- ./edengths_nomencl.pdf
           git checkout --track origin/gh-pages
+          git stash pop
           git add ./edengths_nomencl.pdf
           git commit -m "Update PDF" 
       - name: Push changes to gh-pages

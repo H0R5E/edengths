@@ -21,7 +21,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
+          git stash push --include-untracked -- ./edengths.pdf
           git checkout --track origin/gh-pages
+          git stash pop
           git add ./edengths.pdf
           git commit -m "Update PDF" 
       - name: Push changes to gh-pages
