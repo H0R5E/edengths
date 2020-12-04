@@ -16,7 +16,9 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: edengths.tex
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build"
+        post_compile: |
+          mkdir build
+          mv edengths.pdf build
       - name: Commit PDF to gh-pages
         run: |
           git config --local user.email "action@github.com"
