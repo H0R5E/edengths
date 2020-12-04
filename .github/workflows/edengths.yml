@@ -16,12 +16,16 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: edengths.tex
+          post_compile: |
+            mkdir build
+            mv edengths.pdf build
       - name: Commit PDF to gh-pages
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
           git checkout --track origin/gh-pages
+          cp build/edengths.pdf .
           git add ./edengths.pdf
           git commit -m "Update PDF" 
       - name: Push changes to gh-pages
