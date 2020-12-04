@@ -1,5 +1,5 @@
-![edengths master](https://github.com/H0R5E/edengths/workflows/edengths%20master/badge.svg)
-![edengths nomencl](https://github.com/H0R5E/edengths/workflows/edengths%20nomencl/badge.svg)
+[![edengths master](https://github.com/H0R5E/edengths/workflows/edengths%20master/badge.svg)](https://h0r5e.github.io/edengths/edengths.pdf)
+[![edengths nomencl](https://github.com/H0R5E/edengths/workflows/edengths%20nomencl/badge.svg)](https://h0r5e.github.io/edengths/edengths_nomencl.pdf)
 
 # edengths - LaTeX PhD Thesis Template
 
@@ -15,6 +15,8 @@ regulation as detailed at:
 Please feel free to alter the template to your own liking, but note that
 the template is made available under the GNU GPL and must be similarly
 licensed should you wish to release your modified template.
+
+An example of the compiled template is available [here](https://h0r5e.github.io/edengths/edengths.pdf).
 
 ## USAGE
 
