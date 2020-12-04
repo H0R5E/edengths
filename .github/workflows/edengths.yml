@@ -17,13 +17,13 @@ jobs:
         with:
           root_file: edengths.tex
       - name: Commit PDF to gh-pages
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git checkout --track origin/gh-pages
-        git commit -m "Add PDF" -a
-    - name: Push changes to gh-pages
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ gh-pages }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git checkout --track origin/gh-pages
+          git commit -m "Add PDF" -a
+      - name: Push changes to gh-pages
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ gh-pages }}
