@@ -31,6 +31,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
+          git checkout -- ./makenomencl.sh
           git checkout --track origin/gh-pages
           cp build/edengths.pdf edengths_nomencl.pdf
           git add ./edengths_nomencl.pdf
