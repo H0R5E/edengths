@@ -18,16 +18,17 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: edengths.tex
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+          args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
           pre_compile: |
             pdflatex edengths
             chmod 777 makenomencl.sh
             ./makenomencl.sh
           post_compile: |
-            mkdir build
-            mv edengths.pdf build
+            diff -I "%%*" edengths.ps .diff/edengths.ps &> /dev/null && echo "action_state=green" >> $GITHUB_ENV || "action_state=red" >> $GITHUB_ENV
       - name: Commit PDF to gh-pages
         run: |
+          mkdir build
+          mv edengths.pdf build
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
@@ -36,8 +37,10 @@ jobs:
           cp build/edengths.pdf edengths_nomencl.pdf
           git add ./edengths_nomencl.pdf
           git commit -m "Update PDF" 
+        if: $action_state == 'green'
       - name: Push changes to gh-pages
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
+        if: $action_state == 'green'

@@ -16,11 +16,13 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: edengths.tex
+          args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
           post_compile: |
-            mkdir build
-            mv edengths.pdf build
+            diff -I "%%*" edengths.ps .diff/edengths.ps &> /dev/null && echo "action_state=green" >> $GITHUB_ENV || "action_state=red" >> $GITHUB_ENV
       - name: Commit PDF to gh-pages
         run: |
+          mkdir build
+          mv edengths.pdf build
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git fetch --all
@@ -28,8 +30,10 @@ jobs:
           cp build/edengths.pdf .
           git add ./edengths.pdf
           git commit -m "Update PDF" 
+        if: $action_state == 'green'
       - name: Push changes to gh-pages
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
+        if: $action_state == 'green'
