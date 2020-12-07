@@ -30,7 +30,7 @@ jobs:
           cp build/edengths.pdf .
           git add ./edengths.pdf
           git commit -m "Update PDF" 
-        if: $action_state == 'green'
+        if: env.action_state == 'green'
       - name: Push changes to gh-pages
         uses: ad-m/github-push-action@master
         with:
