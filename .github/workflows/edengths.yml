@@ -18,7 +18,18 @@ jobs:
           root_file: edengths.tex
           args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
           post_compile: |
-            diff -I "%%*" edengths.ps .diff/edengths.ps &> /dev/null && echo "action_state=green" >> $GITHUB_ENV || "action_state=red" >> $GITHUB_ENV
+            diff -I "%%*" edengths.ps .diff/edengths.ps && echo "action_state=red" >> $GITHUB_ENV || echo "action_state=green" >> $GITHUB_ENV
+      - name: Commit PS to master
+        run: |
+          cp edengths.ps .diff
+          git add .diff/edengths.ps
+          git commit -m "Update PS" 
+        if: env.action_state == 'green'
+      - name: Push changes to master
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        if: env.action_state == 'green'
       - name: Commit PDF to gh-pages
         run: |
           mkdir build
