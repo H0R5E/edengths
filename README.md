@@ -50,7 +50,7 @@ Copyright (C) 1998 George Taylor
 
 Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
 
-Copyright (C) 2010-2020 Mathew Topper <dataonlygreater@gmail.com>
+Copyright (C) 2010-2021 Mathew Topper <dataonlygreater@gmail.com>
 
 The Unofficial University of Edinburgh LaTeX2e Thesis
 Template is free software: you can redistribute it and/or modify

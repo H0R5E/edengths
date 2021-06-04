@@ -3,7 +3,7 @@
 %%
 %% Copyright (C) 1998 George Taylor
 %% Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
-%% Copyright (C) 2010-2017 Mathew Topper <damm_horse@yahoo.co.uk>
+%% Copyright (C) 2010-2021 Mathew Topper <damm_horse@yahoo.co.uk>
 %%
 %%
 %%   ABOUT
@@ -262,6 +262,13 @@
 %% set otherwise, above.
 \newcommand{\defaultfont}{\ifthenelse{\boolean{sansflag}}{\sffamily}{}}
 
+%% Update the default font
+\ifthenelse{\boolean{sansflag}}%
+{%
+	\renewcommand{\familydefault}{\sfdefault}
+}%
+{}
+
 %% Considering the optional fonts a lot of work has to be done to the table of
 %% contents otherwise there is no action taken.
 \ifthenelse{\boolean{sansflag}}%
@@ -506,11 +513,12 @@
       \hrule%
       \vskip 1.5em%
       %% Author
-      {\Large\itshape%
+      {\fontfamily{\rmdefault}\selectfont%
+      {\LARGE\itshape%
       \parbox[c]{0.9\linewidth}{%
         \centering%
         \@author%
-      }}%
+      }}}%
       %% University crest. Check crestflag.
       \ifthenelse{\boolean{crestflag}}{%
         \vskip 10mm%
@@ -521,7 +529,8 @@
          \vskip 70mm%
       }%
       %% Qualification
-      {\Large%
+      {\fontfamily{\rmdefault}\selectfont%
+      {\LARGE%
       \parbox[c]{10cm}{%
         \begin{onehalfspace}%
           \centering%
@@ -529,10 +538,10 @@
         \end{onehalfspace}%
       }\\%
       %% University
-      [4mm] {\unidefault} \\%
+      [2mm] {\unidefault} \\%
       %% Date
       [10mm]\@date
-      }}%
+      }}}%
     \end{center}\par%
     \vfil\null}
 
@@ -545,7 +554,9 @@
    \thispagestyle{empty}
    \begin{center}%
     \vspace*{2cm}%
-    \textit{\Large {#1}}%
+    {\fontfamily{\rmdefault}\selectfont%
+    	\textit{\Large {#1}}%
+	}%
   \end{center}%
 }
 
