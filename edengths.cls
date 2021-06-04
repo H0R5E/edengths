@@ -65,9 +65,6 @@
 \newboolean{twosideflag}                % Is the twoside option set?
 \setboolean{twosideflag}{false}
 
-\newboolean{bibflag}                    % Should the bibliography be printed
-\setboolean{bibflag}{true}
-
 \newboolean{hyperflag}
 \setboolean{hyperflag}{false}           % Use hyperref package?
 
@@ -99,9 +96,6 @@
 
 %% Print equation labels next to equation numbers.
 \DeclareOption{labels}{\setboolean{labelflag}{true}}
-
-%% Repress the printing of the bibliography.
-\DeclareOption{nobib}{\setboolean{bibflag}{false}}
 
 %% Use hyperref
 \DeclareOption{hyper}{\setboolean{hyperflag}{true}}
@@ -193,11 +187,6 @@
 %% Appendix
 \RequirePackage{appendix}                       % Required for appendices
 
-%% Bibliography
-\RequirePackage{natbib}                         % Natbib with default options
-\RequirePackage{bibentry}                       % Allow in text references and
-                                                % hiding of bibliograhy.
-
 %% FONTS 
 \RequirePackage{ae}                             % Virtual fonts for T1 encoded
                                                 % CMR-fonts.
@@ -211,12 +200,12 @@
   }
 
 %% Provide the font options to packages for the sans serif fonts
-%% This loads caption and subfig. Caption does caption formatting and
-%% subfig allows subfigures.
+%% This loads caption and subcaption. Caption does caption formatting and
+%% subcaption allows subfigures.
 \ifthenelse{\boolean{sansflag}}{%
-   \RequirePackage[labelfont={sf,bf}, textfont=sf]{caption, subfig}%
+   \RequirePackage[labelfont={sf,bf}, textfont=sf]{caption, subcaption}%
   }{%
-   \RequirePackage[labelfont=bf]{caption, subfig}%
+   \RequirePackage[labelfont=bf]{caption, subcaption}%
   }
 
 %% TITLES AND CAPTIONS
@@ -226,7 +215,7 @@
 \RequirePackage[nobottomtitles*,pagestyles,clearempty]{titlesec}%
 
 %% Allow modifications to the able of contents and lists
-\RequirePackage[titles,subfigure]{tocloft}%
+\RequirePackage[titles]{tocloft}%
 
 %% NOMENCLATURE
 
@@ -251,7 +240,7 @@
     }
 \ifthenelse{\boolean{hyperflag}}{%
     \AtEndOfClass{\RequirePackage[\hyperdriver]{hyperref}}%
-    \AtEndOfClass{\RequirePackage[all]{hypcap}}%
+    \PassOptionsToPackage{caption}{hypcap=true}%
    }{}
 
 %% LABELS
@@ -269,7 +258,7 @@
 %% FONTS
 
 %% Make a special command called defaultfont which sets sans or not. This is
-%% the main control for changing the font style, only caption and subfig are
+%% the main control for changing the font style, only caption and subcaption are
 %% set otherwise, above.
 \newcommand{\defaultfont}{\ifthenelse{\boolean{sansflag}}{\sffamily}{}}
 
@@ -727,19 +716,13 @@
 
 %% Maually add a line to the contents with phantomsection
 %% to make better links if hyperref is used.
-%% Choose between nobib or bib dependent on nobib option.
 \newcommand{\edbibliography}{%
     \cleardoublepage%
     \phantomsection%
     \addcontentsline{toc}{chapter}{\bibname}%
     \message{Bibliography hyphenation penalty: \the\bibhyphenpenalty}%
     \hyphenpenalty=\bibhyphenpenalty%
-    \ifthenelse{\boolean{bibflag}}%
-    {%
-      \bibliography%
-    }{%
-      \nobibliography%
-    }
+    \bibliography
 }
 
 %% SHORTCUT WRAPPERS

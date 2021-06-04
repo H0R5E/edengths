@@ -52,7 +52,6 @@
 %% fancychap - Use fancy chapter headings like jthesis
 %% crest     - Use a crest on the front page
 %% labels    - Print labels in spine margin.
-%% nobib     - do not print the bibliography
 %% hyper     - Use the hyperref package to put clickable links into 
 %%             the document. Use \autoref{fig:example} now instead of,
 %%             say, figure~\ref{fig:example}. Settings are in
@@ -73,7 +72,7 @@
 
 %%%% LOAD USER DEFINED PACKAGES.
 
-%% These are in ``packages.tex'' file and is automattically loaded
+%% These are in ``packages.tex'' file and is automatically loaded
 %% by the class file
 
 %%%% LOAD USER DEFINED COMMANDS.
@@ -117,13 +116,9 @@ a Phd Thesis About Clever Stuff at The University of Edinburgh}
 
 %% You may restrict which chapters are compiled using \includeonly
 %% appendix/edengapp must be in the list if appendicies are included.
-%% To not print the bibliography use the nobib class option.
 
-%% TURN ON nobib
 % \includeonly{front/frontmtr, chapter1/chapter1}
 % \includeonly{chapter2/chapter2, chapter3/chapter3}
-
-%% TURN OFF nobib
 % \includeonly{chapter6/chapter6, appendix/edengapp,
 %              appendix/appendx1 appendix/appendix2}
 
@@ -170,13 +165,12 @@ a Phd Thesis About Clever Stuff at The University of Edinburgh}
 
 %%%% WRITE OUT BIBLIOGRAPHY
 
-%% Path to bib file. Use \edbibliography command here or nobib
-%% option and bibhyphenpenalty variable will not work.
+%% Path to bib file. Use \edbibliography command here or the
 \edbibliography{bib/edengref}
 
 %% Path to style file. It's recommended that you use the provided style
 %% file (a variation on plainnat) as it does italic et als and reduces
 %% all first names to initials. It also puts the surname first in apa style.
-\bibliographystyle{bib/edengapa}
+\bibliographystyle{apacite}
 
 \end{document}

@@ -27,10 +27,6 @@
 
 %% appendix   -   Required for appendices
 
-%% natbib     -   Natbib style bibliography with default options
-
-%% bibentry   -   Allow in text references and hiding of bibliograhy.
-
 %% ae         -   Nicer pdf output using T1 fonts
 
 %% fontenc    -   T1 encoding stops some errors for unknown fonts
@@ -39,7 +35,7 @@
 
 %% caption    -   Custom formatting of captions
 
-%% subfig     -   Use subfigures in captions and formatting of such.
+%% subcaption -   Use subfigures in captions and formatting of such.
 
 %% tocloft    -   Allow modifications to the table of contents and lists
 
@@ -69,7 +65,7 @@
 %% If you're using hyperref you dont need this but you might need the
 %% 'breakurl' package depending on your compilation route.
 %% Note: 'breakurl' must be the last package (which is normally 'hyperref').
-\usepackage{url} 
+\usepackage[hyphens]{url} 
 
 %% AMS Math Packages
 \usepackage{amsmath}
@@ -85,8 +81,18 @@
 %% Nicer tables
 \usepackage{booktabs}
 
-%% Proper hythenation
-\usepackage[british,english]{babel}
+%% Citations
+\usepackage[natbibapa]{apacite}
+
+%% Proper hyphenation
+\usepackage[british]{babel}
+
+%% Rotating
+\usepackage{pdflscape}
+
+%% Paragraph control
+\usepackage[defaultlines=4,all]{nowidow}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%             Pass OPTIONS to packages you want here              %%%%
