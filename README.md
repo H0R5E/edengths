@@ -18,6 +18,10 @@ licensed should you wish to release your modified template.
 
 An example of the compiled template is available [here](https://h0r5e.github.io/edengths/edengths.pdf).
 
+A version of this template that uses the nomencl package for adding a 
+nomenclature can be found on the [nomencl](https://github.com/H0R5E/edengths/tree/nomencl)
+branch.
+
 ## USAGE
 
 The main file with this package is edengths.tex. It contains information about

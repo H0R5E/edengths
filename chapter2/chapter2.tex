@@ -102,10 +102,10 @@ checking it is single spaced.
 \section{Section with a landscape image}
 
 \Autoref{fig:landscape} is an image on a landscape orientated page with
-the headers removed.
+the header removed and a simple footer added.
 
 \begin{landscape}
-\thispagestyle{empty}
+\thispagestyle{plain} % Remove this line for normal headers
 \begin{figure}[p]
   \centering
     \includegraphics[width=\linewidth]{xdsm_sequential-crop}
