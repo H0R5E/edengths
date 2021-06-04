@@ -14,17 +14,41 @@ paper~\cite{apaper}. Figure~\ref{fig:picture} is a weird picture.
   %% to \graphicspath{{thispath/}{thatpath/}}
   \includegraphics[width=2in]{examplepicture}
   \caption[Long caption and \textit{some italics} to see what happens]%
-  {This is an example of pdf with a very long caption and \textit{some italics} to see what happens and it should see what happens over two lines.}
+  {This is an example of pdf with a very long caption and \textit{some italics}
+  to see what happens and it should see what happens over two lines.}
 \label{fig:picture}
 \end{figure}
 
 \subsection{A subsection}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec orci lacus, ac sollicitudin tortor. Maecenas rutrum vestibulum rhoncus. Vestibulum non ligula nibh. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus egestas sodales lacus, ac scelerisque nulla venenatis sed. Ut elementum turpis ac lacus consectetur consequat. Sed at est eros. Praesent erat velit, dictum id adipiscing eu, ultrices vel nisi. Nullam at nisl ut est posuere commodo tincidunt eget nisl. Integer id erat non metus adipiscing dignissim quis sed enim. Curabitur viverra lobortis eleifend. Proin vestibulum nunc eu augue dapibus quis porttitor ipsum rhoncus. Duis tortor tellus, suscipit sit amet ornare id, lacinia sed lacus. Ut in molestie ligula. Praesent euismod lectus vitae arcu malesuada tempus. Aliquam pharetra tincidunt augue in eleifend. Curabitur porttitor vulputate quam, ut fringilla mauris porta eu. Curabitur sodales, felis non vestibulum feugiat, urna diam bibendum purus, ac scelerisque massa eros sit amet ipsum. In elementum laoreet aliquam.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec orci 
+lacus, ac sollicitudin tortor. Maecenas rutrum vestibulum rhoncus. Vestibulum 
+non ligula nibh. Cum sociis natoque penatibus et magnis dis parturient montes, 
+nascetur ridiculus mus. Phasellus egestas sodales lacus, ac scelerisque nulla 
+venenatis sed. Ut elementum turpis ac lacus consectetur consequat. Sed at est 
+eros. Praesent erat velit, dictum id adipiscing eu, ultrices vel nisi. Nullam 
+at nisl ut est posuere commodo tincidunt eget nisl. Integer id erat non metus 
+adipiscing dignissim quis sed enim. Curabitur viverra lobortis eleifend. Proin 
+vestibulum nunc eu augue dapibus quis porttitor ipsum rhoncus. Duis tortor 
+tellus, suscipit sit amet ornare id, lacinia sed lacus. Ut in molestie ligula. 
+Praesent euismod lectus vitae arcu malesuada tempus. Aliquam pharetra 
+tincidunt augue in eleifend. Curabitur porttitor vulputate quam, ut fringilla 
+mauris porta eu. Curabitur sodales, felis non vestibulum feugiat, urna diam 
+bibendum purus, ac scelerisque massa eros sit amet ipsum. In elementum laoreet 
+aliquam.
 
 \subsubsection{A subsubsection}
 
-Aliquam eget sapien tellus, sed rutrum leo. Vestibulum et quam sit amet dolor gravida sagittis. Aenean dapibus urna a nibh sollicitudin pharetra. Sed nisi augue, vehicula sed tristique facilisis, lacinia ut augue. Nam quis tempor mi. Vestibulum lorem leo, aliquet at sollicitudin vitae, fringilla id odio. Aenean a orci odio. Mauris tincidunt eros ac libero suscipit molestie. Donec feugiat turpis a urna suscipit in pellentesque magna pretium. Vivamus eget nunc vitae nunc ultricies tincidunt. Duis dictum eros et lorem auctor id ullamcorper diam commodo. Pellentesque quis dolor nec urna vestibulum pellentesque. Donec luctus mi ut nisi hendrerit pulvinar. Donec fringilla, lectus vitae accumsan sollicitudin, sem metus mollis risus, nec laoreet ante arcu ut augue.
+Aliquam eget sapien tellus, sed rutrum leo. Vestibulum et quam sit amet dolor 
+gravida sagittis. Aenean dapibus urna a nibh sollicitudin pharetra. Sed nisi 
+augue, vehicula sed tristique facilisis, lacinia ut augue. Nam quis tempor mi. 
+Vestibulum lorem leo, aliquet at sollicitudin vitae, fringilla id odio. Aenean 
+a orci odio. Mauris tincidunt eros ac libero suscipit molestie. Donec feugiat 
+turpis a urna suscipit in pellentesque magna pretium. Vivamus eget nunc vitae 
+nunc ultricies tincidunt. Duis dictum eros et lorem auctor id ullamcorper diam 
+commodo. Pellentesque quis dolor nec urna vestibulum pellentesque. Donec 
+luctus mi ut nisi hendrerit pulvinar. Donec fringilla, lectus vitae accumsan 
+sollicitudin, sem metus mollis risus, nec laoreet ante arcu ut augue.
 
 \subsection{Another subsection}
 
@@ -74,3 +98,19 @@ four five six seven eight nine ten eleven twelve thirteen fourteen
 fifteen sixteen seventeen eighteen nineteen twenty and so on. Just
 checking it is single spaced.
 \end{quotation}
+
+\section{Section with a landscape image}
+
+\Autoref{fig:landscape} is an image on a landscape orientated page with
+the headers removed.
+
+\begin{landscape}
+\thispagestyle{empty}
+\begin{figure}[p]
+  \centering
+    \includegraphics[width=\linewidth]{xdsm_sequential-crop}
+    \caption{XDSM diagram. Reproduced from \citep{topper2021}.
+    \label{fig:landscape}
+}
+\end{figure}
+\end{landscape}
