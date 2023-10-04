@@ -1,12 +1,18 @@
 cff-version: 1.2.0
 title: LaTeX PhD Thesis Template
 message: >-
-  If you use this template, please cite it using the metadata from this file.
+  If you would like to cite this template, please use the metadata from this file.
 type: software
 authors:
   - given-names: Mathew
     family-names: Topper
-    email: dataonlygreater@gmail.com
+    email: damm_horse@yahoo.co.uk
+  - given-names: Mike
+    family-names: Nolta
+    email: mrnolta@princeton.edu
+  - given-names: George
+    family-names: Taylor
+  - name: "Contributors to the edengths Github repository"
 repository-code: 'https://github.com/H0R5E/edengths'
 url: 'https://www.dataonlygreater.com/software/edengths/'
 abstract: >-
@@ -17,5 +23,3 @@ keywords:
   - LaTeX
   - PhD
 license: GPL-3.0
-commit: e8b0ea0
-date-released: '2023-08-02'
