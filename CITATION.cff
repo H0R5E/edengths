@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: LaTeX PhD Thesis Template
+message: >-
+  If you use this template, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Mathew
+    family-names: Topper
+    email: dataonlygreater@gmail.com
+repository-code: 'https://github.com/H0R5E/edengths'
+url: 'https://www.dataonlygreater.com/software/edengths/'
+abstract: >-
+  This is a Latex2e template which corresponds to the regulations regarding layout of a thesis submitted within the University of Edinburgh. It is not official, but conforms as best as possible to published University of Edinburgh academic regulations.
+keywords:
+  - thesis
+  - Edinburgh
+  - LaTeX
+  - PhD
+license: GPL-3.0
+commit: e8b0ea0
+date-released: '2023-08-02'
