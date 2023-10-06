@@ -22,6 +22,10 @@ A version of this template that uses the nomencl package for adding a
 nomenclature can be found on the [nomencl](https://github.com/H0R5E/edengths/tree/nomencl)
 branch.
 
+If you are interested in using this template with [Quarto](https://quarto.org/)
+then check out Nick Hood's fork
+[edengths-quarto](https://github.com/NixImagery/edengths-quarto/).
+
 ## USAGE
 
 The main file with this package is edengths.tex. It contains information about
