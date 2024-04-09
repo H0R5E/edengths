@@ -3,7 +3,7 @@
 %%
 %% Copyright (C) 1998 George Taylor
 %% Copyright (C) 2002 Mike Nolta <mrnolta@princeton.edu>
-%% Copyright (C) 2010-2021 Mathew Topper <damm_horse@yahoo.co.uk>
+%% Copyright (C) 2010-2024 Mathew Topper <damm_horse@yahoo.co.uk>
 %%
 %%
 %%   ABOUT
@@ -105,7 +105,6 @@
 
 %% Must have options.
 \OnOption{a4paper}
-\OnOption{openright}     % Start chapters on righthand side pages
 \OnOption{titlepage}     % Title should be on it's own page.
 
 %% Pass options to the report class which are still OK
@@ -117,6 +116,7 @@
 \OnOption{fleqno}
 \OnOption{leqno}
 \OnOption{oneside}
+\OnOption{openright}
 
 %% Set a boolean in addition for the twoside option
 \DeclareOption{twoside}{\setboolean{twosideflag}{true}%
@@ -143,7 +143,7 @@
 \ProcessOptions\relax
 
 %% Load report class with default setup
-\LoadClass[a4paper,openright,titlepage]{\classfile}
+\LoadClass[a4paper,titlepage]{\classfile}
 
 %% COLORS FIRST
 
