@@ -26,7 +26,7 @@ entered after the comment "LOAD DOCUMENT CLASS"
 
 For information regarding compiling the package please see the supporting 
 documentation at
-[www.dataonlygreater.com](http://www.dataonlygreater.com/software/edengths/).
+[www.dataonlygreater.com](https://www.dataonlygreater.com/blog/post/edengths/).
 
 ## CREDITS
 
