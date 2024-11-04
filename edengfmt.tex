@@ -190,9 +190,10 @@
 \newpagestyle{main}[\defaultfont\bfseries]{%
   \headrule%
   \sethead%
-      {\ifthesection{\toptitlemarks\thesection{.}\space}%
+      {\toptitlemarks
+       \ifthesection{\thesection{.}\space}%
           {\ifthechapter{\thechapter{.}\space}{}}%
-       \ifthesection{\toptitlemarks\sectiontitle}%
+       \ifthesection{\sectiontitle}%
           {\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}}}%
       {}%
       {\thepage}%
@@ -211,9 +212,10 @@
       [\thepage]%
       []%
       [\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}]%
-      {\ifthesection{\toptitlemarks\thesection{.}\space}%
+      {\toptitlemarks
+       \ifthesection{\thesection{.}\space}%
           {\ifthechapter{\thechapter{.}\space}{}}%
-       \ifthesection{\toptitlemarks\sectiontitle}%
+       \ifthesection{\sectiontitle}%
           {\ifthechapter{\chaptertitle}{\MakeUppercase{\chaptertitle}}}}%
       {}%
       {\thepage}%
