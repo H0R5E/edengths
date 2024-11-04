@@ -11,13 +11,13 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: Compile LaTeX document
-        if: github.head_ref == 'master'
+        if: github.base_ref == 'master'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: edengths.tex
           args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
       - name: Compile LaTeX document
-        if: github.head_ref == 'nomencl'
+        if: github.base_ref == 'nomencl'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: edengths.tex
