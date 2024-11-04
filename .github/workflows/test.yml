@@ -1,0 +1,27 @@
+name: Test build
+on:
+  pull_request:
+    branches:
+      - master
+      - nomencl
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: edengths.tex
+          args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
+      - name: Compile LaTeX document
+        if: github.ref == 'refs/heads/nomencl'
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: edengths.tex
+          args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
+          pre_compile: |
+            pdflatex edengths
+            chmod 777 makenomencl.sh
+            ./makenomencl.sh
