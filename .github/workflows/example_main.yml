@@ -1,8 +1,8 @@
-name: Create master example
+name: Create main example
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '0 0 * * *'
@@ -20,7 +20,7 @@ jobs:
       - name: Test for modification
         run: |
           diff -I "%%*" edengths.ps .diff/edengths.ps && echo "action_state=red" >> $GITHUB_ENV || echo "action_state=green" >> $GITHUB_ENV
-      - name: Commit PS to master
+      - name: Commit PS to main
         run: |
           cp edengths.ps .diff
           git config --local user.email "action@github.com"
@@ -28,7 +28,7 @@ jobs:
           git add .diff/edengths.ps
           git commit -m "Update PS" 
         if: env.action_state == 'green'
-      - name: Push changes to master
+      - name: Push changes to main
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
