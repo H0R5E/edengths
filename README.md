@@ -1,5 +1,5 @@
-[![edengths main](https://github.com/H0R5E/edengths/workflows/edengths%main/badge.svg)](https://h0r5e.github.io/edengths/edengths.pdf)
-[![edengths nomencl](https://github.com/H0R5E/edengths/workflows/edengths%20nomencl/badge.svg)](https://h0r5e.github.io/edengths/edengths_nomencl.pdf)
+[![edengths main](https://github.com/H0R5E/edengths/actions/workflows/example_main.yml/badge.svg)](https://h0r5e.github.io/edengths/edengths.pdf)
+[![edengths nomencl](https://github.com/H0R5E/edengths/actions/workflows/example_nomencl.yml/badge.svg)](https://h0r5e.github.io/edengths/edengths_nomencl.pdf)
 
 # edengths - LaTeX PhD Thesis Template
 
