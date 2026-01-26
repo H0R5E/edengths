@@ -15,9 +15,10 @@ jobs:
         with:
           ref: nomencl
       - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: edengths.tex
+          texlive_version: 2024
           args: "-pdfps -file-line-error -halt-on-error -interaction=nonstopmode"
           pre_compile: |
             pdflatex edengths
